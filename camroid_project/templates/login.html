@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/login/login-main.css' %}"/>
+
+
+<div class="login-form">
+
+    <!-- Default form login -->
+    <form class="text-center border border-light p-5" action="login" method="post" autocomplete="off" >
+        {% csrf_token %}
+        <p class="h2 mb-4">Sign in</p>
+
+        <!-- Email -->
+        <input type="text" class="form-control mb-4" placeholder="Username" name="username" required>
+
+        <!-- Password -->
+        <input type="password" class="form-control mb-4" placeholder="Password" name="password" required>
+
+        <div class="d-flex justify-content-around">
+            <div>
+                <!-- Remember me -->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                </div>
+            </div>
+            <div>
+                <!-- Forgot password -->
+                <a href="">Forgot password?</a>
+            </div>
+        </div>
+
+        <!-- Sign in button -->
+        <button class="btn btn-lightgreen btn-block my-4" type="submit">Sign in</button>
+
+        <!-- Register -->
+        <p>Not a member?
+            <a href="">Register</a>
+        </p>
+
+        <!-- Social login -->
+        <p>or sign in with:</p>
+
+        <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+        <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+        <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+        <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+
+    </form>
+    <!-- Default form login -->
+</div>
+
+
+{% endblock content %}

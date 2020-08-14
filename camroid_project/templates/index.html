@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<!-- css files  -->
+<!--    <link rel="stylesheet" href="fonts/icomoon/base-style.css">-->
+
+<!--<link rel="stylesheet" href="{% static 'css/index/bootstrap.min.css' %}">-->
+<link rel="stylesheet" href="{% static 'css/index/magnific-popup.css' %}">
+<link rel="stylesheet" href="{% static 'css/index/jquery-ui.css' %}">
+<link rel="stylesheet" href="{% static 'css/index/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/index/owl.theme.default.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/index/bootstrap-datepicker.css' %}">
+
+<!--    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">-->
+
+<link rel="stylesheet" href="{% static 'css/index/aos.css' %}">
+<link rel="stylesheet" href="{% static 'css/index/fancybox.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/index/index-style.css' %}">
+<!-- css files end -->
+
+
+
+<!-- Gallery -->
+<section id="galleries">
+
+    <!-- Photo Galleries -->
+    <div class="gallery">
+
+        <div id="multi-item-example" class="carousel carousel-multi-item" data-ride="carousel">
+
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+
+                <!--First slide-->
+                {% for cat_item in category_ %}
+                <div class="carousel-item">
+                    <div class="row grid-container">
+                        {% for id,category in cat_item %}
+                        <div class="grid-item">
+                            <a href="?val={{id}}#galleries">{{category}}</a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                <!--/.First slide-->
+
+            </div>
+            <!--/.Slides-->
+
+        </div>
+        <!--/.Carousel Wrapper-->
+
+
+        <main class="main-content">
+
+            <div class="container-fluid photos">
+                <div class="align-items-stretch">
+                    {% for img in arrList %}
+                    <div data-aos="fade-up">
+                        <a href="{{img}}" class="d-block photo-item" data-fancybox="gallery">
+                            <img src="{{img}}" id="id" class="img-fluid">
+                            <div class="photo-text-more">
+                                <span class="icon icon-camera"></span>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <footer>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination pg-red pagination-circle justify-content-center">
+                        {% if arrList.has_previous %}
+                        <li class="page-item">
+                            <a class="page-item" href="?page=1#galleries" title="first">
+                                <span class="material-icons">first_page</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a href="?page={{arrList.previous_page_number}}#galleries" title="previous">
+                                <span class="material-icons">arrow_back_ios</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="page-item">
+                            Page {{arrList.number}} of {{arrList.paginator.num_pages}}
+                        </li>
+
+                        {% if arrList.has_next %}
+                        <li class="page-item">
+                            <a href="?page={{arrList.next_page_number}}#galleries" title="next">
+                                <span class="material-icons">arrow_forward_ios</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a href="?page={{arrList.paginator.num_pages}}#galleries" title="last">
+                                <span class="material-icons">last_page</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </footer>
+        </main>
+    </div>
+</section>
+<!-- Intro section end  -->
+
+<!-- js files  -->
+<script src="{% static 'js/index/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/index/jquery-migrate-3.0.1.min.js' %}"></script>
+<script src="{% static 'js/index/jquery-ui.js' %}"></script>
+<script src="{% static 'js/index/popper.min.js' %}"></script>
+<script src="{% static 'js/index/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/index/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/index/jquery.stellar.min.js' %}"></script>
+<script src="{% static 'js/index/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'js/index/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/index/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/index/aos.js' %}"></script>
+
+<script src="{% static 'js/index/jquery.fancybox.min.js' %}"></script>
+
+<script src="{% static 'js/index/index-main.js' %}"></script>
+<!-- js files end -->
+
+
+{% endblock content %}

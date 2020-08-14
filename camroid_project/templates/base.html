@@ -1,0 +1,280 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<title>Camroid</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Camroid">
+	<meta name="keywords" content="camroid, photo, image, wallpaper, gallary, background">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<!------ pnotify ------------------------------->
+<script rel="stylesheet" href="https://cdn.jsdelivr.net/pnotify/2.0.0/pnotify.all.min.css"></script>
+
+	<!----------------------pnotify end------------------------------------->
+
+	<!-- Favicon -->
+	<link href="img/favicon.ico" rel="shortcut icon"/>
+
+	<!-- font awesome Stylesheets -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+	<!-- family Material Icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="{% static 'css/base/slicknav.min.css' %}"/>
+
+
+	<!--	<link rel="stylesheet" href="{% static 'css/base/magnific-popup.css' %}"/>-->
+	<!--	<link rel="stylesheet" href="{% static 'css/base/owl.carousel.min.css' %}"/>-->
+
+	<!-- Main Stylesheets -->
+	<link rel="stylesheet" href="{% static 'css/base/base-style.css' %}"/>
+
+
+	<!--	[if lt IE 9] ---->
+	<!--	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
+	<!--	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+	<!---[endif]-->
+
+</head>
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+	<div class="loader"></div>
+</div>
+
+<!-- Header section  -->
+<header class="header-section hs-bd sticky">
+	<a href="{% url 'index' %}" class="site-logo"><h1>Cam<span>roid</span></h1></a>
+	<div class="header-controls">
+		<button class="nav-switch-btn"><i class="fa fa-bars"></i></button>
+		<a href="{% url 'myspace' %}" class="upload-btn"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></a>
+	</div>
+	<ul class="main-menu">
+		<li>
+			<!-- Search form -->
+			<form class="form-inline mr-auto search-bar-form" action="index" method="post">
+				<div class="md-form ml-3 my-0">
+					<input class="form-control search-bar" type="text" placeholder="Search" aria-label="Search">
+					<button><i class="fa fa-search" aria-hidden="true"></i></button>
+				</div>
+			</form>
+		</li>
+		<li><a href="{% url 'index' %}" class="home">Home</a></li>
+		<!--		<li><a href="about.html">About the Artist </a></li>-->
+		<!--<li>
+            <a href="#">Portfolio</a>
+            <ul class="sub-menu">
+                <li><a href="portfolio.html">Portfolio 1</a></li>
+                <li><a href="portfolio-1.html">Portfolio 2</a></li>
+                <li><a href="portfolio-2.html">Portfolio 3</a></li>
+            </ul>
+        </li>-->
+		<li><a href="{% url 'category' %}" class="category">Category</a></li>
+		{% if user.is_authenticated %}
+		<li><a href="{% url 'myspace' %}" class="myspace">My Space</a></li>
+		<li><a href="{% url 'logout' %}" class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i>
+			Logout</a></li>
+		{% else %}
+		<li><a href="{% url 'register' %}" class="register">Register</a></li>
+		<li><a href="{% url 'login' %}" class="login"><i class="fa fa-sign-in" aria-hidden="true"></i>
+			Login</a></li>
+		{% endif %}
+		<li class="upload-mobile">
+			<a href="{% url 'myspace' %}" class="upload-btn"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
+				Upload</a>
+		</li>
+	</ul>
+</header>
+<div class="clearfix"></div>
+<!-- Header section end  -->
+
+<!-- Portfolio section  -->
+<!--	<div class="portfolio-section">-->
+<!--		<ul class="portfolio-filter controls text-center">-->
+<!--			<li class="control" data-filter="all">All</li>-->
+<!--			<li class="control" data-filter=".nature">Nature</li>-->
+<!--			<li class="control" data-filter=".studio">Studio Photography</li>-->
+<!--			<li class="control" data-filter=".weddings">Weddings</li>-->
+<!--			<li class="control" data-filter=".lifestyle">Lifestyle</li>-->
+<!--			<li class="control" data-filter=".fashion">Fashion</li>-->
+<!--		</ul>-->
+<section id="main">
+
+	{% block content %}
+
+
+
+	{% endblock content %}
+
+</section>
+<!--	</div>-->
+<!-- Portfolio section end  -->
+
+<!-- Footer section   -->
+<!--	<footer class="footer-section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6 order-1 order-md-2">
+					<div class="footer-social-links">
+						<a href=""><i class="fa fa-pinterest"></i></a>
+						<a href=""><i class="fa fa-facebook"></i></a>
+						<a href=""><i class="fa fa-twitter"></i></a>
+						<a href=""><i class="fa fa-dribbble"></i></a>
+						<a href=""><i class="fa fa-behance"></i></a>
+					</div>
+				</div>
+				<div class="col-md-6 order-2 order-md-1">
+					<div class="copyright">&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;
+</div>
+				</div>
+			</div>
+		</div>
+	</footer>-->
+<!-- Footer section end  -->
+
+<!-- Search model -->
+<!--<div class="search-model">
+	<div class="h-100 d-flex align-items-center justify-content-center">
+		<div class="search-close-switch">+</div>
+		<form class="search-model-form">
+			<input type="text" id="search-input" placeholder="Search here.....">
+		</form>
+	</div>
+</div>-->
+<!-- Search model end -->
+
+
+<!--====== Javascripts & Jquery ======-->
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+<script src="{% static 'js/base/jquery.slicknav.min.js' %}"></script>
+
+<script src="{% static 'js/base/base-main.js' %}"></script>
+
+
+<!-------------------------bootstrap notify --------------------------------------->
+
+<script type="text/javascript" src="{% static 'bootstrap-notify-master/bootstrap-notify.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap-notify-master/bootstrap-notify.min.js' %}"></script>
+
+
+<!-----------------------------bootstrap notify end-------------------------------------->
+
+<!--<script src="{% static 'js/base/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/base/bootstrap.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/base/owl.carousel.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/base/jquery.magnific-popup.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/base/circle-progress.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/base/mixitup.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/base/instafeed.min.js' %}"></script>-->
+<!--	<script src="{% static 'js/base/masonry.pkgd.min.js' %}"></script>-->
+
+
+<script>
+{% for message in messages %}
+
+	$.notify({
+	{% if message.tags == 'success' %}
+	icon: 'glyphicon glyphicon-ok-sign',
+	{% elif message.tags == 'danger' %}
+	icon: 'glyphicon glyphicon-remove-sign',
+	{% elif message.tags == 'warning' %}
+	icon: 'glyphicon glyphicon-warning-sign',
+	{% else %}
+	icon: 'glyphicon glyphicon-info-sign',
+	{% endif %}
+<!--	title: '{{message.tags|upper }}',-->
+	message: '{{ message }}.',
+<!--	url: 'https://github.com/mouse0270/bootstrap-notify',-->
+	target: '_blank'
+},{
+	// settings
+	element: 'body',
+	position: null,
+	type: '{{ message.tags }}',
+	allow_dismiss: false,
+	newest_on_top: false,
+	showProgressbar: false,
+	placement: {
+		from: "top",
+		align: "center"
+	},
+	offset: 20,
+	spacing: 10,
+	z_index: 1031,
+	delay: 5000,
+	timer: 1000,
+	url_target: '_blank',
+	mouse_over: null,
+	animate: {
+		enter: 'animated fadeInDown',
+		exit: 'animated fadeOutUp'
+	},
+	onShow: null,
+	onShown: null,
+	onClose: null,
+	onClosed: null,
+	icon_type: 'class',
+	template: '<div data-notify="container" class="col-xs-12 col-sm-4 alert alert-{0}" role="alert">' +
+		'<center><button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+		'<span data-notify="icon"></span> ' +
+		'<strong><span data-notify="title">{1}</span></strong> ' +
+		'<span data-notify="message">{2}</span>' +
+		'<div class="progress" data-notify="progressbar">' +
+			'<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+		'</div>' +
+<!--		'<a href="{3}" target="{4}" data-notify="url"></a>'--> +
+	'</center></div>'
+});
+{% endfor %}
+
+</script>
+
+
+
+<!--	{% for message in messages %}
+$(document).ready(function() {
+    $.pnotify({
+        title: '{{ message.tags|upper }}',
+        text: '{{ message }}.',
+        type: '{{ message.tags }}',
+        hide: false,
+        styling: 'bootstrap',
+        closer_hover: false,
+        sticker_hover: false
+    });
+});
+{% endfor %}-->
+
+
+</body>
+</html>

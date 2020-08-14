@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/category/icomoon/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/category/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/category/animate.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/category/aos.css' %}">
+<link rel="stylesheet" href="{% static 'css/category/jquery.fancybox.min.css' %}">
+
+<!-- Theme Style -->
+<link rel="stylesheet" href="{% static 'css/category/category-style.css' %}">
+
+<div class="category-container">
+	<div class="content grid-container">
+		{% for id, Category, img in arrList %}
+		<div class="media grid-items">
+			<a href="{% url 'index' %}?val={{id}}#galleries">
+				<img src="{{ img }}" alt="image not available" title="{{ Category }}">
+				<div class="text-block">
+					<h4>{{ Category}}</h4>
+				</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+<!-- Loader -->
+<!--<div id="unslate_co&#45;&#45;overlayer"></div>-->
+<!--<div class="site-loader-wrap">-->
+<!--	<div class="site-loader"></div>-->
+<!--</div>-->
+
+<!--<script src="{% static 'js/category/scripts-dist.js' %}"></script>-->
+<!--<script src="{% static 'js/category/base-main.js' %}"></script>-->
+
+{% endblock content %}
+
+

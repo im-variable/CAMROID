@@ -1,0 +1,75 @@
+
+@media (min-width: 991.99px) {
+
+.grid-container {
+    margin: 1em;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.grid-items {
+  margin : 1em;
+/*text-align: center;*/
+  font-weight: bold
+}
+
+div.media a img {
+width: 100%;
+height: 40vh !important;
+}
+
+}
+
+@media (max-width: 991.98px) {
+
+.grid-container {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.grid-items {
+  margin : 1em;
+  font-weight: bold
+}
+
+div.media a img {
+object-fit: cover;
+width: 100%;
+height: 20vh !important;
+}
+
+}
+
+
+.grid-items a {
+  grid-row: 1; /* place in first row */
+  grid-column: 1;  /* place in first column */
+}
+
+
+.grid-items a .text-block{
+  text-align: center;
+  background-color: black; /* Fallback color */
+  background-color: black; /* Black background with 0.5 opacity */
+  color: #f1f1f1; /* Grey text */
+  padding: 1% 1%;
+  opacity: .88;
+  grid-row: 1; /* place in first row */
+  grid-column: 1;  /* place in first column */
+}
+
+
+div.media a {
+	-moz-transition: -moz-transform 0.2s ease-in-out;
+    -webkit-transition: -webkit-transform 0.2s ease-in-out;
+	-ms-transition: -ms-transform 0.2s ease-in-out;
+	transition: transform 0.2s ease-in-out;
+}
+
+div.media a:hover {
+    -moz-transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	-ms-transform: scale(1.05);
+	transform: scale(1.05);
+}
