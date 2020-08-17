@@ -71,6 +71,10 @@ a:focus {
     background-color: #ef6c57 !important;
 }
 
+.tags-style{
+color: black;
+}
+
 /*---------------------
   Helper CSS
 -----------------------*/
@@ -580,29 +584,10 @@ color: #28a745;
 }
 
 
-@keyframes border-bottom {
-    from {
-    background-color: white;
-    }
-
-    to {
-        background-color: #0ECE91;
-    }
-}
-
 
 .main-menu li a:hover{
-    height: 14px;
-    animation-name: border-bottom;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-
-
-
-/*
     border-bottom: 2px solid #0ECE91;
     z-index: -1;
-*/
 /*      transition-property: width;
   transition-duration: 1s;
   transition-delay: 0.2s;*/
@@ -1521,3 +1506,9 @@ color: #28a745;
 }
 
 */
+/* tags css*/
+.bootstrap-tagsinput .tag {
+    margin-right: 2px !important;
+    color: white !important;
+    background-color: black !important;
+}

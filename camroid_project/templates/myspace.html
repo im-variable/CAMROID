@@ -1,31 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 {% load static %}
 
-<!-- Font -->
+<!--<link href="{% static 'css/myspace/common-css/ionicons.css' %}" rel="stylesheet">
 
-<!--	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700%7CAllura" rel="stylesheet">-->
-
-<!-- Stylesheets -->
-
-<!--
-<link href="{% static 'css/myspace/common-css/bootstrap.css' %}" rel="stylesheet">
--->
-
-
-<link href="{% static 'css/myspace/common-css/ionicons.css' %}" rel="stylesheet">
-
-<link href="{% static 'css/myspace/common-css/fluidbox.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/myspace/common-css/fluidbox.min.css' %}" rel="stylesheet">-->
 
 <link href="{% static 'css/myspace/myspace-styles.css' %}" rel="stylesheet">
+<!--
+<link href="{% static 'css/myspace/responsive.css' %}" rel="stylesheet">-->
 
-<link href="{% static 'css/myspace/responsive.css' %}" rel="stylesheet">
-
-
-<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
-
-<!--<link href="{%static 'css/myspace/tags.css'}" rel="stylesheet" type="text/css">-->
+<!--<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">-->
 
 <div class="container main-content">
 
@@ -38,30 +25,30 @@
     <!--        </div>&lt;!&ndash; container &ndash;&gt;-->
     <!--    </header>-->
 
-        <div class="row profile_data">
-            <div class="col-md-1 col-lg-2">
+    <div class="row profile_data">
+        <div class="col-md-1 col-lg-2">
 
-            </div>
-            <div class="col-md-10 col-lg-8">
-                <div class="intro">
-                    <div class="profile-img">
-                        <img src="{{user.userprofile.profile_img.url}}" alt="image not available">
-                    </div>
-                    <h2 class="user-full-name"><b>{{ user.first_name }} {{ user.last_name}}</b></h2>
-                    <h4 class="font-red">@{{ user.username }}</h4>
-                    <!--						<ul class="information margin-tb-30">-->
-                    <!--							<li><b>BORN : </b>August 25, 1987</li>-->
-                    <!--							<li><b>EMAIL : </b>mymith@mywebpage.com</li>-->
-                    <!--							<li><b>MARITAL STATUS : </b>Married</li>-->
-                    <!--						</ul>-->
-                    <!--                        <ul class="social-icons">-->
-                    <!--                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></i></a></li>-->
-                    <!--                            <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>-->
-                    <!--                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->
-                    <!--                        </ul>-->
-                </div><!-- intro -->
-            </div><!-- col-sm-8 -->
-        </div><!-- row -->
+        </div>
+        <div class="col-md-10 col-lg-8">
+            <div class="intro">
+                <div class="profile-img">
+                    <img src="{{user.userprofile.profile_img.url}}" alt="image not available">
+                </div>
+                <h2 class="user-full-name"><b>{{ user.first_name }} {{ user.last_name}}</b></h2>
+                <h4 class="font-red">@{{ user.username }}</h4>
+                <!--						<ul class="information margin-tb-30">-->
+                <!--							<li><b>BORN : </b>August 25, 1987</li>-->
+                <!--							<li><b>EMAIL : </b>mymith@mywebpage.com</li>-->
+                <!--							<li><b>MARITAL STATUS : </b>Married</li>-->
+                <!--						</ul>-->
+                <!--                        <ul class="social-icons">-->
+                <!--                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></i></a></li>-->
+                <!--                            <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>-->
+                <!--                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->
+                <!--                        </ul>-->
+            </div><!-- intro -->
+        </div><!-- col-sm-8 -->
+    </div><!-- row -->
 
 
 
@@ -214,43 +201,7 @@
                                                     <label for="email">Email address</label>
                                                 </div>
                                             </div>
-                                            <!-- Second column -->
-                                            <!--                                            <div class="col-md-6">-->
-                                            <!--                                                <div class="md-form mb-0">-->
-                                            <!--                                                    <input type="text" id="phoneno" name="phoneno"-->
-                                            <!--                                                           class="form-control validate"-->
-                                            <!--                                                           value="{{ user.phoneno }}">-->
-                                            <!--                                                    <label for="form77" data-error="wrong" data-success="right">Phone-->
-                                            <!--                                                        Number-->
-                                            <!--                                                    </label>-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>-->
                                         </div>
-                                        <!-- Second row -->
-                                        <!--&lt;!&ndash; Third row &ndash;&gt;
-                                        <div class="row">
-                                            &lt;!&ndash; First column &ndash;&gt;
-                                            <div class="col-md-6">
-                                                <div class="md-form mb-0">
-                                                    <input type="password" id="password" name="password"
-                                                           class="form-control validate">
-                                                    <label for="password">Change Password</label>
-                                                </div>
-                                            </div>
-                                            &lt;!&ndash; Second column &ndash;&gt;
-                                            <div class="col-md-6">
-                                                <div class="md-form mb-0">
-                                                    <input type="password" id="confirm-password" name="confirm-password"
-                                                           class="form-control validate">
-                                                    <label for="confirm-password" data-error="wrong"
-                                                           data-success="right">Confirm Password
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            &lt;!&ndash; Second row &ndash;&gt;
-                                        </div>
-                                        --><!-- Third row -->
-                                        <!-- Fourth row -->
                                         <div class="row">
                                             <div class="col-md-12 text-center my-4">
                                                 <button type="submit" value="update-account" name="action"
@@ -284,10 +235,10 @@
                     <div class="form-group md-form">
 
                         <div class="form-row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-md-4 col-sm-4">
                                 <label for="dropdownMenu">Category</label>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-md-8 col-sm-8">
                                 <select class="mdb-select form-control" id="dropdownMenu" name="Category">
                                     <option value="" disabled selected>Choose your option</option>
                                     {% for id, Category in Upload_catList%}
@@ -297,23 +248,25 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-md-4 col-sm-4">
                                 <label for="uploadfile">Upload Files</label>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-md-8 col-sm-8">
                                 <input type="file" name="files[]" class="form-control-file btn btn-warning"
                                        id="uploadfile" multiple="True"
                                        autocomplete="off" required>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-md-4 col-sm-4">
                                 <label for="keywords">Tags</label>
                             </div>
-                            <div class="col-lg-9">
+                            <div class="col-lg-9 col-md-8 col-sm-8">
                                 <input type="text" name="keywords" id="keywords" class="form-control validate"
-                                       placeholder="Enter tags using comma(,) seperated"
+                                       data-role="tagsinput"
+                                       placeholder="Enter tags"
                                        required>
+                                <p class="text-muted m-2"><small>Add upto 5 tags to describe image.</small></p>
                             </div>
                         </div>
                         <div class="form-row">
@@ -516,14 +469,11 @@
 <!----------------------------delete modal end ------------------------------------------>
 
 
-
-
-
 <!-- SCIPTS -->
 
 <script src="{% static 'js/myspace/common-js/jquery-3.2.1.min.js' %}"></script>
 
-<script src="{% static 'js/myspace/common-js/tether.min.js' %}"></script>
+<!--<script src="{% static 'js/myspace/common-js/tether.min.js' %}"></script>
 
 <script src="{% static 'js/myspace/common-js/bootstrap.js' %}"></script>
 
@@ -532,18 +482,14 @@
 <script src="{% static 'js/myspace/common-js/jquery.waypoints.min.js' %}"></script>
 
 
-<!--	<script src="common-js/progressbar.min.js"></script>-->
+&lt;!&ndash;	<script src="common-js/progressbar.min.js"></script>&ndash;&gt;
 
 <script src="{% static 'js/myspace/common-js/jquery.fluidbox.min.js' %}"></script>
 
-<script src="{% static 'js/myspace/common-js/scripts.js' %}"></script>
-
-<!--<script src="https://github.com/optikalefx/OpenJS-Autofill/blob/master/autofill.js" type="text/javascript"></script>-->
-
-<!--<script src="{% static 'js/myspace/tags.js'%}" type="text/javascript"></script>
-<script src="{% static 'js/myspace/autofill.js' %}" type="text/javascript"></script>-->
+<script src="{% static 'js/myspace/common-js/scripts.js' %}"></script>-->
 
 <script src="{% static 'js/myspace/myspace-main.js' %}"></script>
+
 
 {% endblock content %}
 

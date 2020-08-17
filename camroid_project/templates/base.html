@@ -1,6 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
 <html lang="zxx">
 <head>
 	<title>Camroid</title>
@@ -9,11 +8,6 @@
 	<meta name="keywords" content="camroid, photo, image, wallpaper, gallary, background">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-	<!------ pnotify ------------------------------->
-<script rel="stylesheet" href="https://cdn.jsdelivr.net/pnotify/2.0.0/pnotify.all.min.css"></script>
-
-	<!----------------------pnotify end------------------------------------->
 
 	<!-- Favicon -->
 	<link href="img/favicon.ico" rel="shortcut icon"/>
@@ -30,8 +24,10 @@
 	<!-- Bootstrap core CSS -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 
+<!--
 
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+-->
 
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
@@ -49,11 +45,7 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="{% static 'css/base/base-style.css' %}"/>
 
-
-	<!--	[if lt IE 9] ---->
-	<!--	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
-	<!--	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
-	<!---[endif]-->
+    <link rel="stylesheet" href="{% static 'bootstrap-tagsinput-master/dist/bootstrap-tagsinput.css' %}"/>
 
 </head>
 <body>
@@ -154,18 +146,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>-->
 <!-- Footer section end  -->
 
-<!-- Search model -->
-<!--<div class="search-model">
-	<div class="h-100 d-flex align-items-center justify-content-center">
-		<div class="search-close-switch">+</div>
-		<form class="search-model-form">
-			<input type="text" id="search-input" placeholder="Search here.....">
-		</form>
-	</div>
-</div>-->
-<!-- Search model end -->
-
-
 <!--====== Javascripts & Jquery ======-->
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -186,8 +166,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script type="text/javascript" src="{% static 'bootstrap-notify-master/bootstrap-notify.js' %}"></script>
 <script type="text/javascript" src="{% static 'bootstrap-notify-master/bootstrap-notify.min.js' %}"></script>
 
-
 <!-----------------------------bootstrap notify end-------------------------------------->
+
+
+<!-------------------------bootstrap tagsinput --------------------------------------->
+
+<script src="{% static 'bootstrap-tagsinput-master/dist/bootstrap-tagsinput.min.js' %}"></script>
+
+<!-------------------------bootstrap tagsinput end --------------------------------------->
+
 
 <!--<script src="{% static 'js/base/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'js/base/bootstrap.min.js' %}"></script>-->
@@ -257,24 +244,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 });
 {% endfor %}
 
-</script>
 
-
-
-<!--	{% for message in messages %}
-$(document).ready(function() {
-    $.pnotify({
-        title: '{{ message.tags|upper }}',
-        text: '{{ message }}.',
-        type: '{{ message.tags }}',
-        hide: false,
-        styling: 'bootstrap',
-        closer_hover: false,
-        sticker_hover: false
-    });
+$('#keywords').tagsinput({
+  maxTags: 5
 });
-{% endfor %}-->
 
+
+</script>
 
 </body>
 </html>

@@ -80,12 +80,12 @@
                     <ul class="pagination pg-red pagination-circle justify-content-center">
                         {% if arrList.has_previous %}
                         <li class="page-item">
-                            <a class="page-item" href="?page=1#galleries" title="first">
+                            <a class="page-item" href="?page=1" title="first">
                                 <span class="material-icons">first_page</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a href="?page={{arrList.previous_page_number}}#galleries" title="previous">
+                            <a href="?page={{arrList.previous_page_number}}" title="previous">
                                 <span class="material-icons">arrow_back_ios</span>
                             </a>
                         </li>
@@ -96,12 +96,12 @@
 
                         {% if arrList.has_next %}
                         <li class="page-item">
-                            <a href="?page={{arrList.next_page_number}}#galleries" title="next">
+                            <a href="?page={{arrList.next_page_number}}" title="next">
                                 <span class="material-icons">arrow_forward_ios</span>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a href="?page={{arrList.paginator.num_pages}}#galleries" title="last">
+                            <a href="?page={{arrList.paginator.num_pages}}" title="last">
                                 <span class="material-icons">last_page</span>
                             </a>
                         </li>

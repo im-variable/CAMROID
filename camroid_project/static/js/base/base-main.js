@@ -1,14 +1,3 @@
-/* ======================================
------------------------------------------
-	Template Name: Photographer
-	Description: Photographer HTML Template
-	Author: colorlib
-	Author URI: https://www.colorlib.com/
-	Version: 1.0
-	Created: colorlib
- ---------------------------------------
- =======================================*/
-
 
 'use strict';
 
@@ -112,7 +101,7 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
-
+/*NOT ALLOWING SPACE IN INPUT FIELD*/
 $("input[type='text']:not(.search-bar), input[type='password']").on({
         keydown: function(e) {
             if (e.which === 32)
@@ -122,6 +111,8 @@ $("input[type='text']:not(.search-bar), input[type='password']").on({
             this.value = this.value.replace(/\s/g, "");
         }
     });
+
+
 
 	/*------------------
 		Search model

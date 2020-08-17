@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models.functions import TruncYear, TruncMonth, ExtractMonth, ExtractYear
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import ImgDetails, CategoryList, UserProfile
 from pathlib import Path
@@ -90,6 +91,7 @@ def myspace(request):
         if request.POST['action'] == 'Upload':
 
             keywords = request.POST['keywords']
+            print("kw:", keywords)
             Cat = request.POST['Category']
 
             for count, x in enumerate(request.FILES.getlist("files[]")):
@@ -204,3 +206,16 @@ def category(request):
 
     print(arrList)
     return render(request, 'category.html', {'arrList': arrList})
+
+
+def getTags(request):
+
+        TagList = ImgDetails.objects.values_list('keywords', flat=True).order_by('keywords')
+
+        print('TagList: ', TagList)
+
+        tagsuggestions = set([item for sublist in TagList for item in str(sublist).split(',')])
+
+        print("tagsuggestions: ", tagsuggestions)
+
+        return JsonResponse(list(tagsuggestions), safe=False)
