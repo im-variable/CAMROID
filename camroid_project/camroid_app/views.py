@@ -43,6 +43,17 @@ def categoryList():
     # print("Catlist:", _catList)
     return _catList
 
+# for search suggestion
+def getSuggestion(request):
+
+    if request.method == "GET":
+
+        SuggestList = ImgDetails.objects.values_list('keywords', flat=True).order_by('keywords')
+
+        suggestions = list(set([item for sublist in SuggestList for item in str(sublist).split(',')]))
+
+    return JsonResponse(suggestions, safe=False)
+
 
 # ---------------------------------------------------------------------------------------------------------
 
@@ -51,16 +62,12 @@ def index(request):
     val = int(request.GET.get('val')) if request.GET.get('val') != None else 1
 
     category_ = cat_suggestions()
-    print('val: ',val)
-    # print(CategoryList)
     if request.method == 'GET':
         if val == 1:
             imgList = ImgDetails.objects.filter(Valid=True)
         else:
             imgList = ImgDetails.objects.filter(Category_id=val, Valid=True)
 
-            # form = ImgDetails(instance=imgList)
-        print("imgList: ",imgList)
         lst = []
         for x in imgList:
             lst.append(x.Img.url)
@@ -158,13 +165,13 @@ def myspace(request):
                 messages.success(request, 'Profile detail updated successfully')
 
         elif request.POST['action'] == 'change-pass':
-             username = request.POST['username']
-             print("id: ",username)
-             old_pass = request.POST['oldPassword']
-             print("old: ",old_pass)
-             new_pass = request.POST['newPassword']
-             print("new: ",new_pass)
-             if username is not None:
+            username = request.POST['username']
+            print("id: ",username)
+            old_pass = request.POST['oldPassword']
+            print("old: ",old_pass)
+            new_pass = request.POST['newPassword']
+            print("new: ",new_pass)
+            if username is not None:
                 user_data = authenticate(username=username, password=old_pass)
                 print('user: ', user_data)
                 if user_data is not None:
@@ -207,15 +214,3 @@ def category(request):
     print(arrList)
     return render(request, 'category.html', {'arrList': arrList})
 
-
-def getTags(request):
-
-        TagList = ImgDetails.objects.values_list('keywords', flat=True).order_by('keywords')
-
-        print('TagList: ', TagList)
-
-        tagsuggestions = set([item for sublist in TagList for item in str(sublist).split(',')])
-
-        print("tagsuggestions: ", tagsuggestions)
-
-        return JsonResponse(list(tagsuggestions), safe=False)

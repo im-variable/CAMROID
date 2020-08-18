@@ -68,9 +68,10 @@
 			<!-- Search form -->
 			<form class="form-inline mr-auto search-bar-form" action="index" method="post">
 				<div class="md-form ml-3 my-0">
-					<input class="form-control search-bar" type="text" id="search" name="search" placeholder="Search"
+					<input class="form-control search-bar" type="text" id="search-field" name="search"
+						   placeholder="Search"
 						   aria-label="Search">
-					<button><i class="fa fa-search" aria-hidden="true"></i></button>
+					<button><i class="fa fa-search search-btn" aria-hidden="true"></i></button>
 				</div>
 			</form>
 		</li>
@@ -249,49 +250,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 });
 {% endfor %}
 
-
-var substringMatcher = function(strs) {
-  return function findMatches(q, cb) {
-    var matches, substringRegex;
-
-    // an array that will be populated with substring matches
-    matches = [];
-
-    // regex used to determine if a string contains the substring `q`
-    substrRegex = new RegExp(q, 'i');
-
-    // iterate through the pool of strings and for any string that
-    // contains the substring `q`, add it to the `matches` array
-    $.each(strs, function(i, str) {
-      if (substrRegex.test(str)) {
-        matches.push(str);
-      }
-    });
-
-    cb(matches);
-  };
-};
-
-var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-  'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-  'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-  'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-  'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-];
-
-$('#search').typeahead({
-  hint: true,
-  highlight: true,
-  minLength: 1
-},
-{
-  name: 'states',
-  source: substringMatcher(states)
-});
 
 </script>
 
