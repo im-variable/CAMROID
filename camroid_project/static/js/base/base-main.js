@@ -113,7 +113,6 @@ $("input[type='text']:not(.search-bar), input[type='password']").on({
     });
 
 
-
 	/*------------------
 		Search model
 	--------------------

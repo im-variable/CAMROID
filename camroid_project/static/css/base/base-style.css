@@ -517,7 +517,7 @@ width: 350px !important }
 
 .header-section {
 	padding-top: 15px;
-	padding-bottom: 27px;
+	padding-bottom: 10px;
 	position: relative;
 	z-index: 99;
 }
@@ -606,12 +606,12 @@ color: #28a745;
 
 .main-menu li a {
 	display: block;
-	padding-bottom: 20px;
+	padding-bottom: 10px;
 	font-size: 13px;
 	color: #121212;
 	font-weight: 600;
 	text-transform: uppercase;
-	margin: 25px 0px 0px 45px;
+	margin: 20px 0px 0px 45px;
     transition: width 2s, height 4s;
 
 }

@@ -840,8 +840,8 @@ text-align: center;
 @media (min-width: 991.99px) {
 
 .carousel-item .grid-container .grid-item {
- padding: 0.5em 0.5em 0em 1em;
-  margin: 1.7em;
+/* padding: 0em 0em 0em 0em;*/
+    margin: 1em 3em 1em 3em;
   font-weight: bold;
 }
 }
