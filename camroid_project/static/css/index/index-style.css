@@ -796,6 +796,7 @@ ul.pagination li.page-item, ul.pagination li.page-item a span.material-icons{
     color: #ef6c57 !important;
     padding-left: 2px;
     padding-right: 2px;
+    font-weight: 600;
 }
 
 

@@ -495,11 +495,20 @@ color: #0ECE91 !important;
 padding-right: 60px;
 }
 
-.search-bar-form input[type=text]:focus {
+.search-bar-form input[type=search]:focus {
 
 box-shadow: 0 1px 0 0 #0ECE91 !important;
 
 border-bottom: 1px solid #0ECE91 !important;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  /* Remove default */
+  -webkit-appearance: none;
+  /*Your new styles */
+  height: 10px;
+  width: 10px;
+  background: #0ECE91;
 }
 
 .search-bar-form button{
@@ -577,13 +586,6 @@ color: #28a745;
 .main-menu li.upload-mobile {
 	display: none;
 }
-
-.active-page{
-   border-bottom: 2px solid #0ECE91;
-    z-index: -1;
-}
-
-
 
 .main-menu li a:hover{
     border-bottom: 2px solid #0ECE91;

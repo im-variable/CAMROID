@@ -97,7 +97,7 @@
                             <div class="card card-cascade narrower">
                                 <!-- Card image -->
                                 <div class="view view-cascade gradient-card-header mdb-color header-line">
-                                    <h3 class="mb-0 ml-3">Edit Photo</h3>
+                                    <h3>Edit Photo</h3>
                                 </div>
                                 <!-- Card image -->
                                 <!-- Card content -->
@@ -138,7 +138,7 @@
                             <div class="card card-cascade narrower">
                                 <!-- Card image -->
                                 <div class="view view-cascade gradient-card-header mdb-color  header-line">
-                                    <h3 class="mb-0 ml-3">Edit Account</h3>
+                                    <h3>Edit Account</h3>
                                 </div>
                                 <!-- Card image -->
                                 <!-- Card content -->
@@ -397,13 +397,13 @@
 
 <!-- Modal -->
 <div class="modal fade top" id="changePassModaltop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true" data-backdrop="true">
+     aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-top modal-notify modal-sm" role="document">
         <div class="modal-content">
+            <div class="header-line modal-header"><h3 class="align-header">Change Password</h3></div>
             <div class="modal-body text-center">
                 <form action="{% url 'myspace' %}" method="post">
                     {% csrf_token %}
-                    <h3 class="header-line">Change Password</h3>
                     <input type="hidden" name="username" value="{{user.username}}">
                     <div class="form-group">
                         <div class="md-form mb-0">
@@ -430,9 +430,10 @@
                         </div>
                     </div>
                     <!--                                    Second row-->
-                    <button type="submit" class="btn btn-lightgreen pt-2" name="action"
+                    <button type="submit" class="btn btn-lightgreen" name="action"
                             value="change-pass">Change Password
                     </button>
+                    <button type="button" class="btn btn-lightdanger" data-dismiss="modal">Close</button>
                 </form>
             </div>
         </div>

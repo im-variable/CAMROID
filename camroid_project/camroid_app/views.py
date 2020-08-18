@@ -59,27 +59,45 @@ def getSuggestion(request):
 
 
 def index(request):
-    val = int(request.GET.get('val')) if request.GET.get('val') != None else 1
+    catVal = int(request.GET.get('val')) if request.GET.get('val') != None else 1
 
     category_ = cat_suggestions()
     if request.method == 'GET':
-        if val == 1:
+        if catVal == 1:
             imgList = ImgDetails.objects.filter(Valid=True)
         else:
-            imgList = ImgDetails.objects.filter(Category_id=val, Valid=True)
+            imgList = ImgDetails.objects.filter(Category_id=catVal, Valid=True)
 
-        lst = []
-        for x in imgList:
-            lst.append(x.Img.url)
+    elif request.POST['action'] == "search-icon":
 
-        page_number = request.GET.get('page')
-        paginator = Paginator(lst, 15)
-        try:
-            page_obj = paginator.get_page(page_number)
-        except PageNotAnInteger:
-            page_obj = paginator.page(1)
-        except EmptyPage:
-            page_obj = paginator.page(paginator.num_pages)
+        searchVal = str(request.POST['search-field'])
+
+        arrSearch = []
+        arr = ""
+        for char in searchVal:
+            if char.isalnum():
+                arr = arr + char
+            else:
+                if arr != '':
+                    arrSearch.append(arr)
+                    arr = ""
+
+        for val in arrSearch:
+            imgList = ImgDetails.objects.filter(Valid=True, keywords__icontains=val)
+
+
+    lst = []
+    for x in imgList:
+        lst.append(x.Img.url)
+
+    page_number = request.GET.get('page')
+    paginator = Paginator(lst, 15)
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
 
     return render(request, 'index.html', {'arrList': page_obj, 'category_': category_})
 
