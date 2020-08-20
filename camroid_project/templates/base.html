@@ -66,13 +66,13 @@
 	<ul class="main-menu">
 		<li>
 			<!-- Search form -->
-			<form class="form-inline mr-auto search-bar-form" action="" method="post">
+			<form class="form-inline mr-auto search-bar-form" action="{% url 'index' %}" method="post">
 				{% csrf_token %}
-				<div class="md-form ml-3 my-0">
+				<div class="md-form ml-3 my-0 input-group">
 					<input class="form-control search-bar" type="search" id="search-field" name="search-field"
 						   placeholder="Search"
 						   aria-label="Search" required>
-					<button name="action"
+					<button name="action" class="input-group-btn"
 							 value="search-icon"><i class="fa fa-search search-btn" aria-hidden="true"></i></button>
 				</div>
 			</form>

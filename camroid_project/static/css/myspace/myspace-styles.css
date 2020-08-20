@@ -197,11 +197,6 @@ width:100%;
 }
 
 
-ul.nav-tabs{
-    padding: 15px 15px 15px 15px;
-    margin-left: 32%;
-}
-
 div.profile_data{
 padding-bottom: 15px;
 width: 100%;
@@ -305,11 +300,13 @@ width: 15%;
 
 
 /* 100% Image Width on Smaller Screens */
+/*
 @media only screen and (max-width: 700px){
   .modal-content {
     width: 100%;
   }
 }
+*/
 
 /* Style the button and place it in the middle of the container/image */
 
@@ -375,4 +372,28 @@ color: #ffbb33;
 #changePassModaltop{
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+#uploadfile{
+margin: 0 !important;
+}
+
+
+
+@media (min-width: 991.98px) {
+
+ul.nav-tabs{
+    padding: 15px 15px 15px 15px;
+    margin-left: 32%;
+}
+
+}
+
+
+@media (max-width: 991.98px) {
+
+ul.nav-tabs{
+    padding: 15px 15px 15px 15px;
+}
+
 }

@@ -491,9 +491,9 @@ margin-right: 15px;
 color: #0ECE91 !important;
 }
 
-.search-bar-form{
+/*.search-bar-form{
 padding-right: 60px;
-}
+}*/
 
 .search-bar-form input[type=search]:focus {
 
@@ -1341,6 +1341,7 @@ color: #28a745;
 	.skill-warp {
 		padding-left: 0px;
 	}
+
 	/*.about-bg {
 		height: 800px;
 	}
@@ -1514,3 +1515,12 @@ color: #28a745;
     color: white !important;
     background-color: black !important;
 }
+
+
+/* error message styling */
+
+.error {
+    color: red;
+    float: left;
+}
+

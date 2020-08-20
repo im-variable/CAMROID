@@ -237,10 +237,10 @@
                     <div class="form-group md-form">
 
                         <div class="form-row">
-                            <div class="col-lg-3 col-md-4 col-sm-4">
+                            <div class="col-3">
                                 <label for="dropdownMenu">Category</label>
                             </div>
-                            <div class="col-lg-9 col-md-8 col-sm-8">
+                            <div class="col-9">
                                 <select class="mdb-select form-control" id="dropdownMenu" name="Category">
                                     <option value="" disabled selected>Choose your option</option>
                                     {% for id, Category in Upload_catList%}
@@ -250,27 +250,27 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-lg-3 col-md-4 col-sm-4">
+                            <div class="col-3">
                                 <label for="uploadfile">Upload Files</label>
                             </div>
-                            <div class="col-lg-9 col-md-8 col-sm-8">
+                            <div class="col-9">
                                 <input type="file" name="files[]" class="form-control-file btn btn-warning"
                                        id="uploadfile" multiple="True"
                                        autocomplete="off" required>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-lg-3 col-md-4 col-sm-4">
+                            <div class="col-3">
                                 <label for="keywords">Tags</label>
                             </div>
-                            <div class="col-lg-9 col-md-8 col-sm-8">
+                            <div class="col-9">
                                 <input type="text" name="keywords" id="keywords" class="form-control validate"
                                        data-role="tagsinput" placeholder="Enter tags" required>
                                 <p class="text-muted m-2"><small>Add upto 5 tags to describe image.</small></p>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-lg-12">
+                            <div class="col-12">
                                 <button type="submit" class="btn btn-lightgreen btn-rounded" name="action" value="Upload"><i
                                         class="fa fa-upload" aria-hidden="true"></i>&nbsp;Upload</button>
                             </div>

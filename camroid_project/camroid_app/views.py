@@ -11,6 +11,7 @@ from pathlib import Path
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import calendar
+import re;
 # import getpass
 # import random
 # import string
@@ -72,26 +73,26 @@ def index(request):
 
         searchVal = str(request.POST['search-field'])
 
-        arrSearch = []
-        arr = ""
-        for char in searchVal:
-            if char.isalnum():
-                arr = arr + char
-            else:
-                if arr != '':
-                    arrSearch.append(arr)
-                    arr = ""
+        print("searchVal: ", searchVal)
+        arrSearch = re.findall(r"[\w']+", searchVal)
 
+
+
+        print("arrSearch: ", arrSearch)
+        imgList = None
         for val in arrSearch:
             imgList = ImgDetails.objects.filter(Valid=True, keywords__icontains=val)
 
+    print("imgList: ", imgList )
+    if imgList == None:
+        imgList = ImgDetails.objects.filter(Valid=True)
 
     lst = []
     for x in imgList:
         lst.append(x.Img.url)
 
     page_number = request.GET.get('page')
-    paginator = Paginator(lst, 15)
+    paginator = Paginator(lst, 20)
     try:
         page_obj = paginator.get_page(page_number)
     except PageNotAnInteger:

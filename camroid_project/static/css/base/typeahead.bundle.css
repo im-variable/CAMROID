@@ -11,7 +11,7 @@
  /*   font-size: 24px;*/
 /*    line-height: 30px;*/
     border: 2px solid #ccc;
-    border-radius: 8px;
+    border-radius: 0px 0px 8px 8px;
     outline: none;
 }
 
@@ -29,12 +29,12 @@
 
 .tt-menu {
     width: 350px;
-    margin-top: 12px;
+    margin-top: 1px;
     padding: 8px 0;
     background-color: #fff;
     border: 1px solid #ccc;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    border-radius: 0px 0px 8px 8px;
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
 }
 
