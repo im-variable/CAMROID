@@ -23,6 +23,12 @@
         readURL(this);
     });
 
+$('#keywords').tagsinput({
+    confirmKeys: [13, 44],
+    maxTags: 6,
+    maxChars: 15
+});
+
 
 });
 /* for delete of image from processing/collection tab */
@@ -33,3 +39,5 @@
         $('#confirm_del').val(pk)
         console.log($('#confirm_del').val(pk))
         }
+
+

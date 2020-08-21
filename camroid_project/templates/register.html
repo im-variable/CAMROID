@@ -24,12 +24,12 @@
 			<div class="col">
 				<!-- First name -->
 				<input type="text" name="first_name" id="first_name"
-					   class="form-control" placeholder="First name" pattern="" required>
+					   class="form-control" placeholder="First name" pattern="[A-Za-z]{2,15}" required>
 			</div>
 			<div class="col">
 				<!-- Last name -->
 				<input type="text" name="last_name" id="last_name" class="form-control"
-					   placeholder="Last name" pattern="" required>
+					   placeholder="Last name" pattern="[A-Za-z]{2,15}" required>
 			</div>
 		</div>
 
@@ -37,13 +37,13 @@
 			<!-- Username -->
 			<input type="text" name="username" id="username" class="form-control mb-3" data-toggle="tooltip"  data-placement="right"
 					   title="can only contain (characters, digits, ( . ) , ( _ ) )" placeholder="Username"
-				   pattern=""
+				   pattern="[a-z\d._-]{5,25}$"
 				   required>
 		</div>
 		<div class="form-row mb-3 pl-1 pr-1">
 			<!-- E-mail -->
 			<input type="text" name="email" id="email" class="form-control mb-3" placeholder="E-mail"
-				   pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" required>
+				   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
 		</div>
 		<!-- Password -->
 		<div class="form-row mb-3">
@@ -130,8 +130,11 @@
 		  		last_name: {
 		  			required: "Please enter Last Name"
 		  		},
+		  		username: {
+		  			required: "Please provide a username"
+		  		}
 		  		email: {
-		  			required: "Please provide an Email"
+		  			required: "Please provide an email"
 		  		},
 		  		password: {
 	  				required: "Please enter Password"

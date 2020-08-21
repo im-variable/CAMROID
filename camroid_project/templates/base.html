@@ -70,7 +70,7 @@
 				{% csrf_token %}
 				<div class="md-form ml-3 my-0 input-group">
 					<input class="form-control search-bar" type="search" id="search-field" name="search-field"
-						   placeholder="Search"
+						   placeholder="Search" pattern="[^'\x22]+"
 						   aria-label="Search" required>
 					<button name="action" class="input-group-btn"
 							 value="search-icon"><i class="fa fa-search search-btn" aria-hidden="true"></i></button>

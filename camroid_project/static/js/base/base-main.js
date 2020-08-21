@@ -182,7 +182,6 @@ $.ajax(
 		$(this).css('background-image', 'url(' + bg + ')');
 	});
 
-
 /*
 	*/
 /*------------------

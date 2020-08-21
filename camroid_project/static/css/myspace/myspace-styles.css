@@ -193,7 +193,7 @@ padding:10px 10px 10px 10px;
 }
 
 div.form-group div.form-row .form-control-file{
-width:100%;
+width: 285px;
 }
 
 
@@ -362,7 +362,7 @@ color: #ffbb33;
 }
 
 .upload-image-form .form-control, .upload-image-form .form-control-file{
-    width: 60%;
+    width: 285px;
 }
 
 .upload-image-form .md-form .form-control {

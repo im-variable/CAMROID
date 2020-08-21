@@ -41,7 +41,7 @@
   box-shadow: none;
 }
 .bootstrap-tagsinput .tag {
-  margin-right: 2px;
+  margin: 2px;
   color: white;
   background-color: #ef6c57;
   border-radius: 4px;
