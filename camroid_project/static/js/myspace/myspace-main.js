@@ -6,7 +6,7 @@
 			$('#imagemodal').modal('show');
 		});
 
-/*for profile photo preview in profile tab*/
+    /*for profile photo preview in profile tab*/
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -23,6 +23,12 @@
         readURL(this);
     });
 
+$('#keywords').tagsinput({
+    confirmKeys: [13, 44],
+    maxTags: 6,
+    maxChars: 15
+});
+
 
 });
 /* for delete of image from processing/collection tab */
@@ -33,4 +39,5 @@
         $('#confirm_del').val(pk)
         console.log($('#confirm_del').val(pk))
         }
+
 

@@ -796,19 +796,15 @@ ul.pagination li.page-item, ul.pagination li.page-item a span.material-icons{
     color: #ef6c57 !important;
     padding-left: 2px;
     padding-right: 2px;
+    font-weight: 600;
 }
 
 
 .align-items-stretch{
             padding: 1em;
-            column-count: 3;
+            column-count: 4;
             }
 
-            #id{
-                width: 100%!important;
-                margin-bottom:1em;
-                border-radius: .5em;
-            }
 
 .grid-item a:hover{
 color: #0ECE91 !important;
@@ -840,11 +836,19 @@ text-align: center;
 @media (min-width: 991.99px) {
 
 .carousel-item .grid-container .grid-item {
- padding: 0.5em 0.5em 0em 1em;
-  margin: 1.7em;
+/* padding: 0em 0em 0em 0em;*/
+    margin: 1em 3em 1em 3em;
   font-weight: bold;
 }
 }
+
+#id{
+    width: 100%!important;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border-radius: 0.5em;
+}
+
 
 img.img-fluid{
 	-moz-transition: -moz-transform 0.2s ease-in-out;

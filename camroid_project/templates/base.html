@@ -1,6 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
 <html lang="zxx">
 <head>
 	<title>Camroid</title>
@@ -9,11 +8,6 @@
 	<meta name="keywords" content="camroid, photo, image, wallpaper, gallary, background">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-	<!------ pnotify ------------------------------->
-<script rel="stylesheet" href="https://cdn.jsdelivr.net/pnotify/2.0.0/pnotify.all.min.css"></script>
-
-	<!----------------------pnotify end------------------------------------->
 
 	<!-- Favicon -->
 	<link href="img/favicon.ico" rel="shortcut icon"/>
@@ -30,8 +24,10 @@
 	<!-- Bootstrap core CSS -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 
+<!--
 
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+-->
 
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
@@ -49,11 +45,9 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="{% static 'css/base/base-style.css' %}"/>
 
+	<link rel="stylesheet" href="{% static 'css/base/bootstrap-tagsinput.css' %}"/>
 
-	<!--	[if lt IE 9] ---->
-	<!--	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
-	<!--	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
-	<!---[endif]-->
+	<link rel="stylesheet" href="{% static 'css/base/typeahead.bundle.css'%}"/>
 
 </head>
 <body>
@@ -72,23 +66,27 @@
 	<ul class="main-menu">
 		<li>
 			<!-- Search form -->
-			<form class="form-inline mr-auto search-bar-form" action="index" method="post">
-				<div class="md-form ml-3 my-0">
-					<input class="form-control search-bar" type="text" placeholder="Search" aria-label="Search">
-					<button><i class="fa fa-search" aria-hidden="true"></i></button>
+			<form class="form-inline mr-auto search-bar-form" action="{% url 'index' %}" method="post">
+				{% csrf_token %}
+				<div class="md-form ml-3 my-0 input-group">
+					<input class="form-control search-bar" type="search" id="search-field" name="search-field"
+						   placeholder="Search" pattern="[^'\x22]+"
+						   aria-label="Search" required>
+					<button name="action" class="input-group-btn"
+							 value="search-icon"><i class="fa fa-search search-btn" aria-hidden="true"></i></button>
 				</div>
 			</form>
 		</li>
 		<li><a href="{% url 'index' %}" class="home">Home</a></li>
 		<!--		<li><a href="about.html">About the Artist </a></li>-->
 		<!--<li>
-            <a href="#">Portfolio</a>
-            <ul class="sub-menu">
-                <li><a href="portfolio.html">Portfolio 1</a></li>
-                <li><a href="portfolio-1.html">Portfolio 2</a></li>
-                <li><a href="portfolio-2.html">Portfolio 3</a></li>
-            </ul>
-        </li>-->
+			<a href="#">Portfolio</a>
+			<ul class="sub-menu">
+				<li><a href="portfolio.html">Portfolio 1</a></li>
+				<li><a href="portfolio-1.html">Portfolio 2</a></li>
+				<li><a href="portfolio-2.html">Portfolio 3</a></li>
+			</ul>
+		</li>-->
 		<li><a href="{% url 'category' %}" class="category">Category</a></li>
 		{% if user.is_authenticated %}
 		<li><a href="{% url 'myspace' %}" class="myspace">My Space</a></li>
@@ -154,18 +152,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>-->
 <!-- Footer section end  -->
 
-<!-- Search model -->
-<!--<div class="search-model">
-	<div class="h-100 d-flex align-items-center justify-content-center">
-		<div class="search-close-switch">+</div>
-		<form class="search-model-form">
-			<input type="text" id="search-input" placeholder="Search here.....">
-		</form>
-	</div>
-</div>-->
-<!-- Search model end -->
-
-
 <!--====== Javascripts & Jquery ======-->
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -186,8 +172,17 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script type="text/javascript" src="{% static 'bootstrap-notify-master/bootstrap-notify.js' %}"></script>
 <script type="text/javascript" src="{% static 'bootstrap-notify-master/bootstrap-notify.min.js' %}"></script>
 
-
 <!-----------------------------bootstrap notify end-------------------------------------->
+
+
+<!-------------------------bootstrap tagsinput --------------------------------------->
+
+<script src="{% static 'js/base/bootstrap-tagsinput.min.js' %}"></script>
+
+<script src="{% static 'js/base/typeahead.bundle.js'%}"></script>
+
+<!-------------------------bootstrap tagsinput end --------------------------------------->
+
 
 <!--<script src="{% static 'js/base/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'js/base/bootstrap.min.js' %}"></script>-->
@@ -257,24 +252,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 });
 {% endfor %}
 
+
 </script>
-
-
-
-<!--	{% for message in messages %}
-$(document).ready(function() {
-    $.pnotify({
-        title: '{{ message.tags|upper }}',
-        text: '{{ message }}.',
-        type: '{{ message.tags }}',
-        hide: false,
-        styling: 'bootstrap',
-        closer_hover: false,
-        sticker_hover: false
-    });
-});
-{% endfor %}-->
-
 
 </body>
 </html>

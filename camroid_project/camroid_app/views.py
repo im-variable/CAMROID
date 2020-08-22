@@ -4,12 +4,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models.functions import TruncYear, TruncMonth, ExtractMonth, ExtractYear
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import ImgDetails, CategoryList, UserProfile
 from pathlib import Path
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import calendar
+import re;
 # import getpass
 # import random
 # import string
@@ -42,36 +44,61 @@ def categoryList():
     # print("Catlist:", _catList)
     return _catList
 
+# for search suggestion
+def getSuggestion(request):
+
+    if request.method == "GET":
+
+        SuggestList = ImgDetails.objects.values_list('keywords', flat=True).order_by('keywords')
+
+        suggestions = list(set([item for sublist in SuggestList for item in str(sublist).split(',')]))
+
+    return JsonResponse(suggestions, safe=False)
+
 
 # ---------------------------------------------------------------------------------------------------------
 
 
 def index(request):
-    val = int(request.GET.get('val')) if request.GET.get('val') != None else 1
+    catVal = int(request.GET.get('val')) if request.GET.get('val') != None else 1
 
     category_ = cat_suggestions()
-    print('val: ',val)
-    # print(CategoryList)
     if request.method == 'GET':
-        if val == 1:
+        if catVal == 1:
             imgList = ImgDetails.objects.filter(Valid=True)
         else:
-            imgList = ImgDetails.objects.filter(Category_id=val, Valid=True)
+            imgList = ImgDetails.objects.filter(Category_id=catVal, Valid=True)
 
-            # form = ImgDetails(instance=imgList)
-        print("imgList: ",imgList)
-        lst = []
-        for x in imgList:
-            lst.append(x.Img.url)
+    elif request.POST['action'] == "search-icon":
 
-        page_number = request.GET.get('page')
-        paginator = Paginator(lst, 15)
-        try:
-            page_obj = paginator.get_page(page_number)
-        except PageNotAnInteger:
-            page_obj = paginator.page(1)
-        except EmptyPage:
-            page_obj = paginator.page(paginator.num_pages)
+        searchVal = str(request.POST['search-field'])
+
+        print("searchVal: ", searchVal)
+        arrSearch = re.findall(r"[\w']+", searchVal)
+
+
+
+        print("arrSearch: ", arrSearch)
+        imgList = None
+        for val in arrSearch:
+            imgList = ImgDetails.objects.filter(Valid=True, keywords__icontains=val)
+
+    print("imgList: ", imgList )
+    if imgList == None:
+        imgList = ImgDetails.objects.filter(Valid=True)
+
+    lst = []
+    for x in imgList:
+        lst.append(x.Img.url)
+
+    page_number = request.GET.get('page')
+    paginator = Paginator(lst, 20)
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
 
     return render(request, 'index.html', {'arrList': page_obj, 'category_': category_})
 
@@ -90,6 +117,7 @@ def myspace(request):
         if request.POST['action'] == 'Upload':
 
             keywords = request.POST['keywords']
+            print("kw:", keywords)
             Cat = request.POST['Category']
 
             for count, x in enumerate(request.FILES.getlist("files[]")):
@@ -156,13 +184,13 @@ def myspace(request):
                 messages.success(request, 'Profile detail updated successfully')
 
         elif request.POST['action'] == 'change-pass':
-             username = request.POST['username']
-             print("id: ",username)
-             old_pass = request.POST['oldPassword']
-             print("old: ",old_pass)
-             new_pass = request.POST['newPassword']
-             print("new: ",new_pass)
-             if username is not None:
+            username = request.POST['username']
+            print("id: ",username)
+            old_pass = request.POST['oldPassword']
+            print("old: ",old_pass)
+            new_pass = request.POST['newPassword']
+            print("new: ",new_pass)
+            if username is not None:
                 user_data = authenticate(username=username, password=old_pass)
                 print('user: ', user_data)
                 if user_data is not None:
@@ -204,3 +232,4 @@ def category(request):
 
     print(arrList)
     return render(request, 'category.html', {'arrList': arrList})
+
