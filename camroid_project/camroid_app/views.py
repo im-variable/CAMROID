@@ -151,10 +151,15 @@ def myspace(request):
 
                 profile_img = request.FILES['profile-upload']
 
+                print('profile image:', user.userprofile.profile_img.name )
                 if profile_img.name.endswith(tuple(ALLOWED_EXTENTIONS)):
-                    if user.userprofile.profile_img is not None:
-                        os.remove(user.userprofile.profile_img.name)
-                        user.userprofile.profile_img = None
+                    if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
+                        try:
+                            os.remove("media/"+user.userprofile.profile_img.name)
+                        except expression as identifier:
+                            messages.error(request, "Something went wrong")
+                        finally:
+                            user.userprofile.profile_img = None
                     user.userprofile.profile_img = profile_img
                     user.save()
                     messages.success(request, 'Profile image updated successfully')
@@ -164,6 +169,15 @@ def myspace(request):
             else:
                 messages.warning(request, 'Select an image to upload')
 
+        elif request.POST['action'] == 'delete-upload':
+
+            if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
+                os.remove("media/"+user.userprofile.profile_img.name)
+                user.userprofile.profile_img = ''
+                messages.info(request, 'Profile image deleted successfully')
+                user.userprofile.profile_img = 'ProfileImg/default-avatar.png'
+                user.save()
+        
         elif request.POST['action'] == 'update-account':
 
             id_ = request.POST['id']

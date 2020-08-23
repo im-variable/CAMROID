@@ -4,15 +4,10 @@
 
 {% load static %}
 
-<!--<link href="{% static 'css/myspace/common-css/ionicons.css' %}" rel="stylesheet">
-
-<link href="{% static 'css/myspace/common-css/fluidbox.min.css' %}" rel="stylesheet">-->
 
 <link href="{% static 'css/myspace/myspace-styles.css' %}" rel="stylesheet">
 <!--
 <link href="{% static 'css/myspace/responsive.css' %}" rel="stylesheet">-->
-
-<!--<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">-->
 
 <div class="container main-content">
 
@@ -117,16 +112,19 @@
                                                 <button class="btn btn-lightgreen btn-rounded btn-sm" type="submit" id="save-upload"
                                                         name="action" value="save-upload">Save
                                                 </button>
-                                            </label>
+                                            </label>            
+                                            </form>
                                             <label for="delete-upload" class="profile-image-upload">
-                                                <button class="btn btn-lightdanger btn-rounded btn-sm" type="submit" name="action"
-                                                        value="delete-upload"
-                                                        id="delete-upload">Delete
-                                                </button>
+                        <form  action="/myspace" class="form-detail" method="post" autocomplete="off">
+                            {%csrf_token%}
+                            <button class="btn btn-lightdanger btn-rounded btn-sm" type="submit" name="action"
+                            value="delete-upload"
+                            id="delete-upload">Delete
+                    </button>
+                        </form> 
                                             </label>
                                         </div>
                                     </div>
-                                </form>
                                 <!-- Card content -->
                             </div>
                             <!-- Card -->
@@ -176,7 +174,7 @@
                                             <div class="col-md-6">
                                                 <div class="md-form mb-0">
                                                     <input type="text" id="first_name" name="first_name"
-                                                           class="form-control validate"
+                                                           class="form-control validate text-capitalize"
                                                            value="{{ user.first_name }}">
                                                     <label for="first_name" data-error="wrong" data-success="right">First name</label>
                                                 </div>
@@ -185,7 +183,7 @@
                                             <div class="col-md-6">
                                                 <div class="md-form mb-0">
                                                     <input type="text" id="last_name" name="last_name"
-                                                           class="form-control validate"
+                                                           class="form-control validate text-capitalize"
                                                            value="{{ user.last_name }}">
                                                     <label for="last_name" data-error="wrong" data-success="right">Last name</label>
                                                 </div>
@@ -198,7 +196,7 @@
                                             <div class="col-md-6">
                                                 <div class="md-form mb-0">
                                                     <input type="email" id="email" name="email"
-                                                           class="form-control validate"
+                                                           class="form-control validate text-lowercase"
                                                            value="{{ user.email }}">
                                                     <label for="email">Email address</label>
                                                 </div>
@@ -472,23 +470,7 @@
 
 <!-- SCIPTS -->
 
-<script src="{% static 'js/myspace/common-js/jquery-3.2.1.min.js' %}"></script>
-
-<!--<script src="{% static 'js/myspace/common-js/tether.min.js' %}"></script>
-
-<script src="{% static 'js/myspace/common-js/bootstrap.js' %}"></script>
-
-<script src="{% static 'js/myspace/common-js/isotope.pkgd.min.js' %}"></script>
-
-<script src="{% static 'js/myspace/common-js/jquery.waypoints.min.js' %}"></script>
-
-
-&lt;!&ndash;	<script src="common-js/progressbar.min.js"></script>&ndash;&gt;
-
-<script src="{% static 'js/myspace/common-js/jquery.fluidbox.min.js' %}"></script>
-
-<script src="{% static 'js/myspace/common-js/scripts.js' %}"></script>-->
-
+<script src="{% static 'js/base/common-js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'js/myspace/myspace-main.js' %}"></script>
 
 

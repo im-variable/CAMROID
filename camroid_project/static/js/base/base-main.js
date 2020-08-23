@@ -112,7 +112,6 @@ $("input[type='text']:not(.search-bar), input[type='password']").on({
         }
     });
 
-
 	/*------------------
 		Search model
 	--------------------
@@ -134,9 +133,6 @@ $.ajax(
         url: "/getSuggestion",
         success: function( data )
         {
-
-            console.log(data)
-
             var substringMatcher = function(strs) {
               return function findMatches(q, cb) {
                 var matches, substringRegex;

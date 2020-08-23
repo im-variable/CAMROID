@@ -29,7 +29,6 @@ $('#keywords').tagsinput({
     maxChars: 15
 });
 
-
 });
 /* for delete of image from processing/collection tab */
         function img_del(pk){
@@ -40,4 +39,8 @@ $('#keywords').tagsinput({
         console.log($('#confirm_del').val(pk))
         }
 
+    //     	// input field to lowercase
+	// function forceLower(strInput) {
+    //     strInput.value=strInput.value.toLowerCase();
+    // }
 
