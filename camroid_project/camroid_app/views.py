@@ -117,7 +117,7 @@ def myspace(request):
         if request.POST['action'] == 'Upload':
 
             keywords = request.POST['keywords']
-            print("kw:", keywords)
+            
             Cat = request.POST['Category']
 
             for count, x in enumerate(request.FILES.getlist("files[]")):
@@ -126,7 +126,6 @@ def myspace(request):
                     imgname = str(user.id) + '-' + str(x)
                     already_Uploaded = ImgDetails.objects.filter(Img=imgname).exists()
 
-                    # print ('already: ',already_Uploaded)
                     if bool(already_Uploaded) == False:
                         def process(f):
                             imgdetail = ImgDetails.objects.create(Img=imgname, keywords=keywords, User_id=user.id, Category_id=Cat)
@@ -172,29 +171,28 @@ def myspace(request):
         elif request.POST['action'] == 'delete-upload':
 
             if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
-                os.remove("media/"+user.userprofile.profile_img.name)
-                user.userprofile.profile_img = ''
-                messages.info(request, 'Profile image deleted successfully')
-                user.userprofile.profile_img = 'ProfileImg/default-avatar.png'
-                user.save()
-        
+                
+                try:
+                    os.remove("media/"+user.userprofile.profile_img.name)
+                    user.userprofile.profile_img = ''
+                    messages.info(request, 'Profile image deleted successfully')
+                    user.userprofile.profile_img = 'ProfileImg/default-avatar.png'
+                    user.save()
+                except expression as identifier:
+                    pass
+                
+                
         elif request.POST['action'] == 'update-account':
-
-            id_ = request.POST['id']
-
-            if id_ is not None:
 
                 first_name = request.POST['first_name']
                 last_name = request.POST['last_name']
                 email = request.POST['email']
 
-                updateField = User.objects.get(pk=id_)
+                user.first_name = first_name
+                user.last_name = last_name
+                user.email = email
 
-                updateField.first_name = first_name
-                updateField.last_name = last_name
-                updateField.email = email
-
-                updateField.save()
+                user.save()
                 messages.success(request, 'Profile detail updated successfully')
 
         elif request.POST['action'] == 'change-pass':

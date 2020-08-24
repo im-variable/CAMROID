@@ -14,7 +14,7 @@
 }
 
 div.media a img {
-width: 100%;
+width: 200px;
 height: 30vh !important;
 }
 
@@ -49,11 +49,12 @@ height: 20vh !important;
 
 
 .grid-items a .text-block{
+  text-transform: uppercase;
   text-align: center;
-  background-color: black; /* Fallback color */
-  background-color: black; /* Black background with 0.5 opacity */
-  color: #f1f1f1; /* Grey text */
-  padding: 1% 1%;
+  /* background-color: black; 
+  background-color: black;  */
+  color: #000000; /* Grey text */
+  margin-top: 10px;
   opacity: .88;
   grid-row: 1; /* place in first row */
   grid-column: 1;  /* place in first column */

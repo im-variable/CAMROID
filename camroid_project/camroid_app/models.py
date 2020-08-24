@@ -26,14 +26,10 @@ class ImgDetails(models.Model):
         super().delete(*args, **kwargs)
 
     def image_tag(self):
-        if self.Img:
-            return mark_safe('<img src="{0}" style="width: 45px; height:45px;" />'.format(self.Img.url))
-        else:
-            return 'No Image Found'
-
+        return mark_safe('<img src="{}" width=45px; height=45px;/>'.format(self.Img.url))
+        
     image_tag.allow_tags = True
-
-
+       
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_img = models.ImageField(upload_to='ProfileImg', default='ProfileImg/default-avatar.png')

@@ -1,11 +1,18 @@
  $(function() {
-    		$('.pop_img').on('click', function() {
+        
+    $('.pop_img').on('click', function() {
 		    var img = $(this).find('img').attr('src')
 		    console.log(img)
 			$('.imagepreview').attr('src', $(this).first('img').attr('src'));
 			$('#imagemodal').modal('show');
 		});
 
+        $('.change-password-icon').on('click', function(){
+
+            $('#changePassModaltop input[type="password"]').val('').blur()
+        
+        });
+        
     /*for profile photo preview in profile tab*/
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -26,8 +33,9 @@
 $('#keywords').tagsinput({
     confirmKeys: [13, 44],
     maxTags: 6,
-    maxChars: 15
+    maxChars: 25
 });
+
 
 });
 /* for delete of image from processing/collection tab */
@@ -38,9 +46,3 @@ $('#keywords').tagsinput({
         $('#confirm_del').val(pk)
         console.log($('#confirm_del').val(pk))
         }
-
-    //     	// input field to lowercase
-	// function forceLower(strInput) {
-    //     strInput.value=strInput.value.toLowerCase();
-    // }
-

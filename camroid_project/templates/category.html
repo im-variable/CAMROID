@@ -16,10 +16,10 @@
 	<div class="content grid-container">
 		{% for id, Category, img in arrList %}
 		<div class="media grid-items">
-			<a href="{% url 'index' %}?val={{id}}#galleries">
+			<a href="{% url 'index' %}?val={{id}}#galleries" class="img-thumbnail">
 				<img src="{{ img }}" alt="image not available" title="{{ Category }}">
 				<div class="text-block">
-					<h4>{{ Category}}</h4>
+					<h5>{{ Category}}</h5>
 				</div>
 			</a>
 		</div>
