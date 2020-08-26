@@ -83,6 +83,7 @@
 			</ul>
 		</li>-->
 		<li><a href="{% url 'category' %}" class="category">Category</a></li>
+		<li><a href="{% url 'aboutus' %}" class="aboutus">About Us</a></li>
 		{% if user.is_authenticated %}
 		<li><a href="{% url 'myspace' %}" class="myspace">My Space</a></li>
 		<li><a href="{% url 'logout' %}" class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i>

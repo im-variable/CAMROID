@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<link href="{% static 'css/aboutus/aboutus-style.css' %}" rel="stylesheet">
+
+
+<section class="about-section">
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-5">
+                <div class="about-img-container">
+                    <img src="media/{{user.userprofile.profile_img}}" class="about-img">
+                </div>
+            </div>
+
+            <div class="col-7">
+
+                <div class="about-text">
+                    <h2>About me. <span>{{ user.first_name }} {{ user.last_name }}</span></h2>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas ac-cumsan lacus vel facilisis commodo viverra maecenas. Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum susp endisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                    </p>
+
+                    <div class="tab-element">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="false">Feedback</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Contact Me</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link active" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="true">Opsum dolor</a>
+                            </li> -->
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <!-- single tab content -->
+                            <div class="tab-pane fade" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                                <p>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <label>
+                                                <input type="radio" id="sentiment_very_dissatisfied" name="sentiment" value="sentiment_very_dissatisfied">
+                                                <div><span class="material-icons md-48 md-dark md-inactive">sentiment_very_dissatisfied</span></div><br/>
+                                            </label>
+                                        </div>
+                                        <div class="col-3">
+                                            <label>
+                                                <input type="radio" id="sentiment_dissatisfied" name="sentiment" value="sentiment_dissatisfied">
+                                                <div><span class="material-icons md-48 md-dark md-inactive">sentiment_dissatisfied</span></div><br/>    
+                                            </label>
+                                        </div>
+                                        <div class="col-3">
+                                            <label>
+                                                <input type="radio" id="sentiment_satisfied" name="sentiment" value="sentiment_satisfied">
+                                                <div><span class="material-icons md-48 md-dark md-inactive">sentiment_satisfied</span></div><br/>    
+                                            </label>
+                                        </div>
+                                        <div class="col-3">
+                                            <label>
+                                                <input type="radio" id="sentiment_very_satisfied" name="sentiment" value="sentiment_very_satisfied">
+                                                <div><span class="material-icons md-48 md-dark md-inactive">sentiment_very_satisfied</span></div><br/>    
+                                            </label>
+                                        </div>
+                                    </div>
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+                                <p><b>
+                                    Ramnagar,<br/>
+                                    Nainital, Uttrakhand,<br/>
+                                    INDIA<br/>
+                                    +91 8882383713<br/>
+                                    im.variable@outlook.com
+                                </b></p>
+                            </div>
+                            <!-- <div class="tab-pane fade show active" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis commodo.</p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Contact section  -->
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="contact-text">
+                    <h3>Get in touch</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas.</p>
+                    <!-- <ul>
+                        <li>Main Str, no 23, NY, <br>New York PK 23589</li>
+                        <li>+546 990221 123</li>
+                        <li>contact@industryalinc.com</li>
+                    </ul> -->
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <form class="contact-form">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input type="text" placeholder="Your Name">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" placeholder="Your Email">
+                        </div>
+                        <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-12">
+                            <input type="text" placeholder="Subject">
+                            <textarea class="text-msg" placeholder="Message"></textarea>
+                            <button class="site-btn" type="submit">send message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact section end  -->
+
+<script src="{% static 'js/base/common-js/jquery-3.3.1.min.js' %}"></script>
+
+<script src="{% static 'js/aboutus/aboutus-main.js' %}"></script>
+{% endblock content %}

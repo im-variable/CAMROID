@@ -12,9 +12,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import calendar
 import re;
-# import getpass
-# import random
-# import string
+from django.views import View
+
 # Create your views here.
 
 UPLOAD_FOLDER = (Path(__file__).parent.parent/ "media/").resolve()
@@ -245,3 +244,10 @@ def category(request):
     print(arrList)
     return render(request, 'category.html', {'arrList': arrList})
 
+class AboutUs(View):
+    def get(self, request):
+        user = User.objects.get(username='im.variable')
+        
+        
+        return render(request, "aboutus.html", {'user': user})
+    

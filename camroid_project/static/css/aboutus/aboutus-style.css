@@ -1,0 +1,242 @@
+
+/*------------------
+  About page
+---------------------*/
+
+.about-section{
+    margin-top: 10px;;
+}
+
+.about-img-container{
+	margin-left: 10px;
+}
+
+.about-img{
+    width: 100%;
+}
+
+.about-text {
+	padding: 0px 50px;
+}
+
+.about-text h2 {
+    font-size: 48px;
+    font-weight: bolder;
+	margin-bottom: 30px;
+}
+
+.about-text h2 span{
+    text-transform: uppercase;
+    font-size: 36px;
+    color: #0ECE91 !important;
+}
+
+.like-text-color{
+    color: white;
+    /* background: #212121; */
+    padding: 4px;
+    font-size: larger;
+    font-weight: 900;
+}
+/* 
+.btn-link {
+    border: none;
+} */
+
+/* HIDE RADIO */
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* IMAGE STYLES */
+  [type=radio] + div {
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.26);
+  }
+  
+  [type=radio]:checked + div {
+	color: #0ECE91 !important;
+  }
+
+.about-text h4 {
+	margin-bottom: 20px;
+}
+
+.about-text p {
+	margin-bottom: 45px;
+}
+
+.about-text .site-btn {
+	margin-top: 20px;
+}
+
+.skill-section {
+	padding-top: 60px;
+	padding-bottom: 35px;
+}
+
+.services-section {
+	padding: 117px 0;
+}
+
+.services-section .site-btn {
+	min-width: 244px;
+}
+
+.services-section .services-item {
+	padding-right: 20px;
+	max-width: 440px;
+}
+
+.services-item {
+	margin: 0 auto 70px;
+}
+
+.services-item img {
+	margin-bottom: 30px;
+}
+
+.services-item h4 {
+	margin-bottom: 20px;
+}
+
+.services-item p {
+	margin-bottom: 0;
+}
+
+.instagram-section {
+	border-top: 1px solid #e8e8e8;
+	padding-top: 25px;
+}
+
+.instagram-section h6 {
+	font-size: 14px;
+	padding-left: 80px;
+	padding-bottom: 25px;
+}
+
+
+/* Tab */
+
+.tab-element .nav-tabs {
+	border-bottom: none;
+	margin-bottom: 25px;
+}
+
+.tab-element .nav-item {
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.tab-element .nav-tabs .nav-link {
+	border: 2px solid #212121;
+	text-align: left;
+	background-color: transparent;
+	border-radius: 0;
+	position: relative;
+	width: 100%;
+	padding: 23px 38px;
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #323232;
+	font-weight: 500;
+	line-height: 1.3;
+	cursor: pointer;
+}
+
+.tab-element .nav-tabs .nav-item:last-child {
+	margin-right: 0;
+}
+
+.tab-element .nav-tabs .nav-link.active {
+	background: #212121;
+	color: #fff;
+}
+
+.tab-element .tab-pane p {
+	margin-bottom: 0;
+	line-height: 1.9;
+}
+
+
+/* ----------------
+  Contact page
+---------------------*/
+
+
+.map {
+	height: 663px;
+	position: relative;
+}
+
+.map iframe {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.contact-section {
+	padding: 120px 0;
+}
+
+.contact-text h3 {
+	margin-bottom: 30px;
+}
+
+.contact-text p {
+	margin-bottom: 45px;
+}
+
+.contact-text ul {
+	list-style: none;
+}
+
+.contact-text ul li {
+	font-size: 14px;
+	font-weight: 500;
+	color: #212121;
+	line-height: 1.9;
+}
+
+.contact-form {
+	padding-top: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+	width: 100%;
+	font-size: 14px;
+	font-weight: 500;
+	color: #7d7d7d;
+	border: none;
+	border-bottom: 1px solid #b2b2b2;
+	padding-bottom: 14px;
+	margin-bottom: 20px;
+	background: transparent;
+}
+
+.contact-form textarea {
+	height: 165px;
+	min-height: 165px;
+	margin-bottom: 38px;
+}
+
+.text-msg::-webkit-input-placeholder {
+	padding-top: 130px;
+}
+
+.text-msg::-moz-input-placeholder {
+	padding-top: 130px;
+}
+
+.text-msg:-moz-input-placeholder {
+	padding-top: 130px;
+}
+
+.text-msg:-ms-input-placeholder {
+	padding-top: 130px;
+}
+
