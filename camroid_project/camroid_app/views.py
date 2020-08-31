@@ -3,15 +3,15 @@ import os
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.db.models.functions import TruncYear, TruncMonth, ExtractMonth, ExtractYear
+from django.db.models.functions import ExtractMonth, ExtractYear
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from .models import ImgDetails, CategoryList, UserProfile
+from .models import ImgDetails, CategoryList
 from pathlib import Path
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import calendar
-import re;
+import re
 from django.views import View
 
 # Create your views here.
@@ -24,8 +24,8 @@ def cat_suggestions():
     cat_suggestions = []
     i = 0
     while i < len(category_):
-        cat_suggestions.append(category_[i:i+9])
-        i+=9
+        cat_suggestions.append(category_[i:i+6])
+        i+=6
 
     # print('suggestion', cat_suggestions)
     return cat_suggestions
@@ -77,12 +77,10 @@ def index(request):
 
 
 
-        print("arrSearch: ", arrSearch)
         imgList = None
         for val in arrSearch:
             imgList = ImgDetails.objects.filter(Valid=True, keywords__icontains=val)
 
-    print("imgList: ", imgList )
     if imgList == None:
         imgList = ImgDetails.objects.filter(Valid=True)
 
@@ -154,7 +152,7 @@ def myspace(request):
                     if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
                         try:
                             os.remove("media/"+user.userprofile.profile_img.name)
-                        except expression as identifier:
+                        except Exception as identifier:
                             messages.error(request, "Something went wrong")
                         finally:
                             user.userprofile.profile_img = None
@@ -177,15 +175,15 @@ def myspace(request):
                     messages.info(request, 'Profile image deleted successfully')
                     user.userprofile.profile_img = 'ProfileImg/default-avatar.png'
                     user.save()
-                except expression as identifier:
+                except Exception as identifier:
                     pass
-                
-                
+
         elif request.POST['action'] == 'update-account':
 
-                first_name = request.POST['first_name']
-                last_name = request.POST['last_name']
-                email = request.POST['email']
+                first_name = request.POST.get('first_name')
+                last_name = request.POST.get('last_name')
+                print(request.POST.get('email'))
+                email = request.POST.get('email')
 
                 user.first_name = first_name
                 user.last_name = last_name
@@ -195,11 +193,11 @@ def myspace(request):
                 messages.success(request, 'Profile detail updated successfully')
 
         elif request.POST['action'] == 'change-pass':
-            username = request.POST['username']
+            username = request.POST.get('username')
             print("id: ",username)
-            old_pass = request.POST['oldPassword']
+            old_pass = request.POST.get('oldPassword')
             print("old: ",old_pass)
-            new_pass = request.POST['newPassword']
+            new_pass = request.POST.get('newPassword')
             print("new: ",new_pass)
             if username is not None:
                 user_data = authenticate(username=username, password=old_pass)
@@ -244,10 +242,28 @@ def category(request):
     print(arrList)
     return render(request, 'category.html', {'arrList': arrList})
 
+
 class AboutUs(View):
+
     def get(self, request):
-        user = User.objects.get(username='im.variable')
-        
-        
-        return render(request, "aboutus.html", {'user': user})
     
+        admin_user = User.objects.get(username='im.variable')
+        user = User.objects.filter(id=request.user.id).first()
+
+        if not user:
+
+            print('authentication req')
+            return render(request, "aboutus.html", {'admin_user': admin_user})
+        else:
+        
+            if self.request.is_ajax() and self.request.method == "GET":
+
+                sentiment_Value = request.GET.get("sentiment_Value", None)
+            
+                user.userprofile.feedback = sentiment_Value 
+                user.save()            
+                print('feedback saved')
+            
+                return render(request, "aboutus.html", {'admin_user': admin_user, 'user': user})
+        
+        return render(request, "aboutus.html", {'admin_user': admin_user, 'user': user})

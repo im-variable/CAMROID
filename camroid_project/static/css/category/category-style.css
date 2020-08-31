@@ -49,6 +49,7 @@ height: 20vh !important;
 
 
 .grid-items a .text-block{
+  white-space: nowrap;
   text-transform: uppercase;
   text-align: center;
   /* background-color: black; 
@@ -60,6 +61,9 @@ height: 20vh !important;
   grid-column: 1;  /* place in first column */
 }
 
+.grid-items a .text-block h6{
+    font-weight: bold;
+}
 
 div.media a {
 	-moz-transition: -moz-transform 0.2s ease-in-out;
@@ -73,4 +77,8 @@ div.media a:hover {
 	-webkit-transform: scale(1.05);
 	-ms-transform: scale(1.05);
 	transform: scale(1.05);
+}
+
+a.img-thumbnail img{
+overflow: hidden;
 }

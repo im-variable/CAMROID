@@ -7,5 +7,7 @@ urlpatterns = [
     path('myspace', views.myspace, name='myspace'),
     path('category', views.category, name='category'),
     path('aboutus', views.AboutUs.as_view(), name='aboutus'),
-    url(r'^getSuggestion/$', views.getSuggestion, name='getSuggestion')
+    url(r'^getSuggestion/$', views.getSuggestion, name='getSuggestion'),
+    # url(r'^aboutus/$', views.AboutUs.as_view(), name='aboutus'),
+    
 ]

@@ -1,27 +1,54 @@
 # Create your views here.
+
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import EmailMessage
-from django.core.validators import validate_email
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
+from django.http import JsonResponse
+from validate_email import validate_email
 
 from .utils import generate_token
 import threading
 
-from django.conf import settings
 
+def check_email_exists(request):
+
+    email = request.GET.get("email")    
+    email_exists = User.objects.filter(email=email, is_active=True).exists()
+
+    return JsonResponse(email_exists, safe=False)
+
+
+def check_username_notexists(request):
+
+    username = request.GET.get("username")
+    username_exists = not User.objects.filter(username=username, is_active=True).exists()
+
+    return JsonResponse(username_exists, safe=False)
+
+
+def check_email_notexists(request):
+
+    email_exists = False
+    email = request.GET.get("email")
+    if validate_email(email, verify=True):
+        email_exists = not User.objects.filter(email=email, is_active=True).exists()
+
+    return JsonResponse(email_exists, safe=False)
+
+# --------------------------------------------------------------------------------------------------
 
 def login(request):
+
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
         print(username)
         print(password)
@@ -43,22 +70,26 @@ def login(request):
 
 def register(request):
     if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email =  request.POST['email']
-        password1 = request.POST['password1']
-        password2 = request.POST['confirm_password']
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password')
+        password2 = request.POST.get('confirm_password')
+
+        context = {
+            'values': request.POST
+        }
 
         if password1 == password2:
             if User.objects.filter(username=username, is_active=True).exists():
                 messages.warning(request, "Username already taken")
                 print("Username already taken")
-                return redirect('register')
+                return render(request, 'register.html', context)
             elif User.objects.filter(email=email, is_active=True).exists():
                 messages.warning(request, "Email already exists")
                 print("Email already exists")
-                return redirect('register')
+                return render(request, 'register.html', context)
             else:
                 user = User.objects.create_user(username=username, password=password1, email=email,
                                                 first_name=first_name, last_name=last_name)
@@ -93,7 +124,7 @@ def register(request):
         else:
             print("Password not matched")
             messages.info(request, "Password not matched")
-            return redirect('register')
+            return render(request, 'register.html', context)
         return redirect('/')
     else:
         return render(request, 'register.html')

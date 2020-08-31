@@ -15,23 +15,29 @@
 
             <div class="col-5">
                 <div class="about-img-container">
-                    <img src="media/{{user.userprofile.profile_img}}" class="about-img">
+                    <img src="media/{{admin_user.userprofile.profile_img}}" class="about-img">
                 </div>
             </div>
 
             <div class="col-7">
 
                 <div class="about-text">
-                    <h2>About me. <span>{{ user.first_name }} {{ user.last_name }}</span></h2>
+                    {% comment %} <h2>About me. <span>{{ admin_user.first_name }} {{ admin_user.last_name }}</span></h2> {% endcomment %}
+                    <h2>About me. <span>Sandeep Negi</span></h2>
 
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas ac-cumsan lacus vel facilisis commodo viverra maecenas. Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum susp endisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+Welcome to camroid, your number one source for all things [product]. We're dedicated to providing you the best of [product], with a focus on dependability. customer service, and [store characteristic].
+
+
+We're working to turn our passion for [product] into a booming online store. We hope you enjoy our products as much as we enjoy offering them to you.
+
+
                     </p>
 
                     <div class="tab-element">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="false">Feedback</a>
+                                <a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="false">Feedback</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Contact Me</a>
@@ -42,7 +48,7 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <!-- single tab content -->
-                            <div class="tab-pane fade" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
                                 <p>
                                     <div class="row">
                                         <div class="col-3">
@@ -135,4 +141,12 @@
 <script src="{% static 'js/base/common-js/jquery-3.3.1.min.js' %}"></script>
 
 <script src="{% static 'js/aboutus/aboutus-main.js' %}"></script>
+
+<script type="text/javascript">
+
+    $("input[name=sentiment]").val({{user.userprofile.feedback}}).prop('checked', true)
+
+</script>
+
+
 {% endblock content %}

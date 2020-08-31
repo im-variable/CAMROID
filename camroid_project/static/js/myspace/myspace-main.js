@@ -12,7 +12,12 @@
             $('#changePassModaltop input[type="password"]').val('').blur()
         
         });
-        
+
+        function forceLower(strInput)
+        {
+        strInput.value=strInput.value.toLowerCase();
+        }
+
     /*for profile photo preview in profile tab*/
     function readURL(input) {
         if (input.files && input.files[0]) {

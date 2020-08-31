@@ -197,7 +197,7 @@
                                                     <div class="md-form mb-0">
                                                         <input type="email" id="email" name="email"
                                                             class="form-control validate text-lowercase"
-                                                            value="{{ user.email }}" disabled>
+                                                            value="{{ user.email }}" onkeyup="return forceLower(this);">
                                                         <label for="email">Email address</label>
                                                     </div>
                                                 </div>
@@ -240,9 +240,13 @@
                                 </div>
                                 <div class="col-9">
                                     <select class="mdb-select form-control" id="dropdownMenu" name="Category">
-                                        <option value="" disabled selected>Choose your option</option>
+<!--                                        <option value="" disabled selected>Choose your option</option>-->
                                         {% for id, Category in Upload_catList%}
-                                        <option value="{{id}}">{{Category}}</option>
+                                            {% if id == 1%}
+                                                <option value="{{id}}" disabled selected>{{Category}}</option>
+                                            {% else %}
+                                                <option value="{{id}}">{{Category}}</option>
+                                            {% endif %}
                                         {% endfor %}
                                     </select>
                                 </div>
