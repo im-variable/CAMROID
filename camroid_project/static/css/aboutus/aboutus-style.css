@@ -23,12 +23,14 @@
     font-size: 48px;
     font-weight: bolder;
 	margin-bottom: 30px;
+	font-weight: lighter;
 }
 
+
+
 .about-text h2 span{
-    text-transform: uppercase;
-    /* font-size: 36px; */
-    color: #0ECE91 !important;
+	/* font-weight: lighter; */
+    color: #28a745 !important;
 }
 
 .like-text-color{
@@ -38,10 +40,6 @@
     font-size: larger;
     font-weight: 900;
 }
-/* 
-.btn-link {
-    border: none;
-} */
 
 /* HIDE RADIO */
 [type=radio] { 
@@ -202,7 +200,7 @@
 }
 
 .contact-form {
-	padding-top: 20px;
+	padding-top: 65px;
 }
 
 .contact-form input,

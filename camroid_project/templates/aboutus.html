@@ -23,15 +23,17 @@
 
                 <div class="about-text">
                     {% comment %} <h2>About me. <span>{{ admin_user.first_name }} {{ admin_user.last_name }}</span></h2> {% endcomment %}
-                    <h2>About me. <span>Sandeep Negi</span></h2>
+                    <h2>About Cam<span>roid</span></h2>
 
                     <p>
-Welcome to camroid, your number one source for all things [product]. We're dedicated to providing you the best of [product], with a focus on dependability. customer service, and [store characteristic].
-
-
-We're working to turn our passion for [product] into a booming online store. We hope you enjoy our products as much as we enjoy offering them to you.
-
-
+                        Welcome to camroid, I'm Sandeep Singh Negi founder of Camroid.
+                        Camroid was first deployed live on 1st Sept, 2020. The
+                        purpose of creating Camroid is to provide platform for photographers to share there beautifully
+                        captured images with other photographers and with public to show there talent worldwide.
+                        We're dedicated to providing you the best quality of images with higher resolution. We
+                        appreciate every feedback our users provide us, to make this platform more appealing and attractive.
+                        We are working on our website to add more functionality to provide ease to our customers.
+                        We hope you enjoy our services as much as we enjoy offering them to you.
                     </p>
 
                     <div class="tab-element">
@@ -103,10 +105,13 @@ We're working to turn our passion for [product] into a booming online store. We 
 <section class="contact-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <div class="contact-text">
                     <h3>Get in touch</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas.</p>
+                    <p>We appreciate every feedback you provide us to make our platform more applealing for our
+                        customers, fixing bugs and adding new functionality for user support. Feel free to contact us
+                        and to show your opinion about our website.
+                        .</p>
                     <!-- <ul>
                         <li>Main Str, no 23, NY, <br>New York PK 23589</li>
                         <li>+546 990221 123</li>
@@ -114,7 +119,7 @@ We're working to turn our passion for [product] into a booming online store. We 
                     </ul> -->
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-7">
                 <form class="contact-form">
                     <div class="row">
                         <div class="col-lg-6">
@@ -144,8 +149,9 @@ We're working to turn our passion for [product] into a booming online store. We 
 
 <script type="text/javascript">
 
+    {% if user.userprofile.feedback %}
     $("input[name=sentiment]").val({{user.userprofile.feedback}}).prop('checked', true)
-
+    {% endif %}
 </script>
 
 

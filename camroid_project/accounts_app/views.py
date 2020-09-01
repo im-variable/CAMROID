@@ -37,6 +37,7 @@ def check_email_notexists(request):
 
     email_exists = False
     email = request.GET.get("email")
+    print(validate_email(email, verify=True))
     if validate_email(email, verify=True):
         email_exists = not User.objects.filter(email=email, is_active=True).exists()
 
@@ -113,7 +114,7 @@ def register(request):
                 email_message = EmailMessage(
                     email_subject,
                     email_body,
-                    'snegi8005@gmail.com',
+                    'noreplyuser97@gmail.com',
                     [email]
                 )
                 email_message.content_subtype = "html"
@@ -194,7 +195,7 @@ class RequestPasswordResetEmail(View):
             email_message = EmailMessage(
                 email_subject,
                 'Hi there, Please click the link below to reset your password \n' + reset_url,
-                'snegi8005@gmail.com',
+                'noreplyuser97@gmail.com',
                 [email]
             )
 
