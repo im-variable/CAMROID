@@ -3,8 +3,8 @@
 1. PRIMARY STYLES
 --------------------------------- */
 
-a, button{ display: inline-block; text-decoration: none; color: inherit; line-height: 1;
-	-webkit-transition: all .25s ease-in-out; transition: all .25s ease-in-out; }
+/* a, button{ display: inline-block; text-decoration: none; color: inherit; line-height: 1;
+	-webkit-transition: all .25s ease-in-out; transition: all .25s ease-in-out; } */
 
 /*
 a:focus, a:active, a:hover,
@@ -202,8 +202,15 @@ padding-bottom: 15px;
 width: 100%;
 }
 
+.nav-tabs .nav-link{
+  color: #000000;
+}
+
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover{
     color: #ef6c57 !important;
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
 }
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
@@ -324,10 +331,6 @@ div.card-body span.img_container{
 padding: 1px
 }
 
-div.main-content .material-icons.md-18 { font-size: 18px; }
-div.main-content .material-icons.md-36 { font-size: 36px; }
-div.main-content .material-icons.md-48 { font-size: 48px; }
-
 input.profile-upload{
     display: none;
 }
@@ -378,7 +381,9 @@ color: #ffbb33;
 margin: 0 !important;
 }
 
-
+.modal-dialog.modal-notify .modal-body {
+  padding: 0rem 1.5rem 0rem 1.5rem;
+}
 
 @media (min-width: 991.98px) {
 
@@ -396,4 +401,13 @@ ul.nav-tabs{
     padding: 15px 15px 15px 15px;
 }
 
+}
+
+i.fa-angle-down.rotate-icon{
+    float: right;
+}
+
+a.collapsable-text-color{
+  color: #000000;
+  font-weight: 600;
 }

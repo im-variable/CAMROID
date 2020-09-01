@@ -35,12 +35,7 @@
 	<!-- family Material Icons -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
 	<link rel="stylesheet" href="{% static 'css/base/slicknav.min.css' %}"/>
-
-
-	<!--	<link rel="stylesheet" href="{% static 'css/base/magnific-popup.css' %}"/>-->
-	<!--	<link rel="stylesheet" href="{% static 'css/base/owl.carousel.min.css' %}"/>-->
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="{% static 'css/base/base-style.css' %}"/>
@@ -88,14 +83,15 @@
 			</ul>
 		</li>-->
 		<li><a href="{% url 'category' %}" class="category">Category</a></li>
+		<li><a href="{% url 'aboutus' %}" class="aboutus">About Us</a></li>
 		{% if user.is_authenticated %}
 		<li><a href="{% url 'myspace' %}" class="myspace">My Space</a></li>
 		<li><a href="{% url 'logout' %}" class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i>
-			Logout</a></li>
+				Logout</a></li>
 		{% else %}
 		<li><a href="{% url 'register' %}" class="register">Register</a></li>
 		<li><a href="{% url 'login' %}" class="login"><i class="fa fa-sign-in" aria-hidden="true"></i>
-			Login</a></li>
+				Login</a></li>
 		{% endif %}
 		<li class="upload-mobile">
 			<a href="{% url 'myspace' %}" class="upload-btn"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;
@@ -125,31 +121,26 @@
 	{% endblock content %}
 
 </section>
-<!--	</div>-->
-<!-- Portfolio section end  -->
 
 <!-- Footer section   -->
-<!--	<footer class="footer-section">
+	<footer class="footer-section">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6 order-1 order-md-2">
 					<div class="footer-social-links">
-						<a href=""><i class="fa fa-pinterest"></i></a>
-						<a href=""><i class="fa fa-facebook"></i></a>
+						<a href="https://www.facebook.com/camroid.india"><i class="fa fa-facebook"></i></a>
 						<a href=""><i class="fa fa-twitter"></i></a>
-						<a href=""><i class="fa fa-dribbble"></i></a>
-						<a href=""><i class="fa fa-behance"></i></a>
+						<a href=""><i class="fa fa-instagram"></i></a>
 					</div>
 				</div>
 				<div class="col-md-6 order-2 order-md-1">
-					<div class="copyright">&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-&lt;!&ndash; Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. &ndash;&gt;
+					<div class="copyright">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made in INDIA by <a href="" target="_blank" class="text-style">PI</a>
 </div>
 				</div>
 			</div>
 		</div>
-	</footer>-->
+	</footer>
 <!-- Footer section end  -->
 
 <!--====== Javascripts & Jquery ======-->
@@ -184,17 +175,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-------------------------bootstrap tagsinput end --------------------------------------->
 
 
-<!--<script src="{% static 'js/base/jquery-3.2.1.min.js' %}"></script>
-<script src="{% static 'js/base/bootstrap.min.js' %}"></script>-->
-<!--	<script src="{% static 'js/base/owl.carousel.min.js' %}"></script>-->
-<!--	<script src="{% static 'js/base/jquery.magnific-popup.min.js' %}"></script>-->
-<!--	<script src="{% static 'js/base/circle-progress.min.js' %}"></script>-->
-<!--	<script src="{% static 'js/base/mixitup.min.js' %}"></script>-->
-<!--	<script src="{% static 'js/base/instafeed.min.js' %}"></script>-->
-<!--	<script src="{% static 'js/base/masonry.pkgd.min.js' %}"></script>-->
-
-
-<script>
+<script type='text/javascript'>
 {% for message in messages %}
 
 	$.notify({

@@ -3,18 +3,17 @@ import os
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.db.models.functions import TruncYear, TruncMonth, ExtractMonth, ExtractYear
+from django.db.models.functions import ExtractMonth, ExtractYear
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from .models import ImgDetails, CategoryList, UserProfile
+from .models import ImgDetails, CategoryList
 from pathlib import Path
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import calendar
-import re;
-# import getpass
-# import random
-# import string
+import re
+from django.views import View
+
 # Create your views here.
 
 UPLOAD_FOLDER = (Path(__file__).parent.parent/ "media/").resolve()
@@ -25,8 +24,8 @@ def cat_suggestions():
     cat_suggestions = []
     i = 0
     while i < len(category_):
-        cat_suggestions.append(category_[i:i+9])
-        i+=9
+        cat_suggestions.append(category_[i:i+6])
+        i+=6
 
     # print('suggestion', cat_suggestions)
     return cat_suggestions
@@ -78,12 +77,10 @@ def index(request):
 
 
 
-        print("arrSearch: ", arrSearch)
         imgList = None
         for val in arrSearch:
             imgList = ImgDetails.objects.filter(Valid=True, keywords__icontains=val)
 
-    print("imgList: ", imgList )
     if imgList == None:
         imgList = ImgDetails.objects.filter(Valid=True)
 
@@ -117,7 +114,7 @@ def myspace(request):
         if request.POST['action'] == 'Upload':
 
             keywords = request.POST['keywords']
-            print("kw:", keywords)
+            
             Cat = request.POST['Category']
 
             for count, x in enumerate(request.FILES.getlist("files[]")):
@@ -126,7 +123,6 @@ def myspace(request):
                     imgname = str(user.id) + '-' + str(x)
                     already_Uploaded = ImgDetails.objects.filter(Img=imgname).exists()
 
-                    # print ('already: ',already_Uploaded)
                     if bool(already_Uploaded) == False:
                         def process(f):
                             imgdetail = ImgDetails.objects.create(Img=imgname, keywords=keywords, User_id=user.id, Category_id=Cat)
@@ -151,10 +147,15 @@ def myspace(request):
 
                 profile_img = request.FILES['profile-upload']
 
+                print('profile image:', user.userprofile.profile_img.name )
                 if profile_img.name.endswith(tuple(ALLOWED_EXTENTIONS)):
-                    if user.userprofile.profile_img is not None:
-                        os.remove(user.userprofile.profile_img.name)
-                        user.userprofile.profile_img = None
+                    if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
+                        try:
+                            os.remove("media/"+user.userprofile.profile_img.name)
+                        except Exception as identifier:
+                            messages.error(request, "Something went wrong")
+                        finally:
+                            user.userprofile.profile_img = None
                     user.userprofile.profile_img = profile_img
                     user.save()
                     messages.success(request, 'Profile image updated successfully')
@@ -164,31 +165,39 @@ def myspace(request):
             else:
                 messages.warning(request, 'Select an image to upload')
 
+        elif request.POST['action'] == 'delete-upload':
+
+            if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
+                
+                try:
+                    os.remove("media/"+user.userprofile.profile_img.name)
+                    user.userprofile.profile_img = ''
+                    messages.info(request, 'Profile image deleted successfully')
+                    user.userprofile.profile_img = 'ProfileImg/default-avatar.png'
+                    user.save()
+                except Exception as identifier:
+                    pass
+
         elif request.POST['action'] == 'update-account':
 
-            id_ = request.POST['id']
+                first_name = request.POST.get('first_name')
+                last_name = request.POST.get('last_name')
+                print(request.POST.get('email'))
+                email = request.POST.get('email')
 
-            if id_ is not None:
+                user.first_name = first_name
+                user.last_name = last_name
+                user.email = email
 
-                first_name = request.POST['first_name']
-                last_name = request.POST['last_name']
-                email = request.POST['email']
-
-                updateField = User.objects.get(pk=id_)
-
-                updateField.first_name = first_name
-                updateField.last_name = last_name
-                updateField.email = email
-
-                updateField.save()
+                user.save()
                 messages.success(request, 'Profile detail updated successfully')
 
         elif request.POST['action'] == 'change-pass':
-            username = request.POST['username']
+            username = request.POST.get('username')
             print("id: ",username)
-            old_pass = request.POST['oldPassword']
+            old_pass = request.POST.get('oldPassword')
             print("old: ",old_pass)
-            new_pass = request.POST['newPassword']
+            new_pass = request.POST.get('newPassword')
             print("new: ",new_pass)
             if username is not None:
                 user_data = authenticate(username=username, password=old_pass)
@@ -233,3 +242,28 @@ def category(request):
     print(arrList)
     return render(request, 'category.html', {'arrList': arrList})
 
+
+class AboutUs(View):
+
+    def get(self, request):
+    
+        admin_user = User.objects.get(username='im.variable')
+        user = User.objects.filter(id=request.user.id).first()
+
+        if not user:
+
+            print('authentication req')
+            return render(request, "aboutus.html", {'admin_user': admin_user})
+        else:
+        
+            if self.request.is_ajax() and self.request.method == "GET":
+
+                sentiment_Value = request.GET.get("sentiment_Value", None)
+            
+                user.userprofile.feedback = sentiment_Value 
+                user.save()            
+                print('feedback saved')
+            
+                return render(request, "aboutus.html", {'admin_user': admin_user, 'user': user})
+        
+        return render(request, "aboutus.html", {'admin_user': admin_user, 'user': user})

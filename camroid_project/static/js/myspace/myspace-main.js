@@ -1,10 +1,22 @@
  $(function() {
-    		$('.pop_img').on('click', function() {
+        
+    $('.pop_img').on('click', function() {
 		    var img = $(this).find('img').attr('src')
 		    console.log(img)
 			$('.imagepreview').attr('src', $(this).first('img').attr('src'));
 			$('#imagemodal').modal('show');
 		});
+
+        $('.change-password-icon').on('click', function(){
+
+            $('#changePassModaltop input[type="password"]').val('').blur()
+        
+        });
+
+        function forceLower(strInput)
+        {
+        strInput.value=strInput.value.toLowerCase();
+        }
 
     /*for profile photo preview in profile tab*/
     function readURL(input) {
@@ -26,7 +38,7 @@
 $('#keywords').tagsinput({
     confirmKeys: [13, 44],
     maxTags: 6,
-    maxChars: 15
+    maxChars: 25
 });
 
 
@@ -39,5 +51,3 @@ $('#keywords').tagsinput({
         $('#confirm_del').val(pk)
         console.log($('#confirm_del').val(pk))
         }
-
-

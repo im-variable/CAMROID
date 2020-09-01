@@ -15,7 +15,7 @@
 <div class="register-form">
 
 	<!-- Default form register -->
-	<form class="text-center border border-light p-5 " action="register" method="post" autocomplete="off" id="myform">
+	<form class="text-center border border-light p-5 " action="{% url 'register' %}" method="post" autocomplete="off" id="register_form">
 		{% csrf_token %}
 
 		<p class="h2 mb-4">Sign up</p>
@@ -24,35 +24,31 @@
 			<div class="col">
 				<!-- First name -->
 				<input type="text" name="first_name" id="first_name"
-					   class="form-control" placeholder="First name" pattern="[A-Za-z]{2,15}" required>
+					   class="form-control text-capitalize" placeholder="First name" pattern="[A-Za-z]{2,15}" value="{{values.first_name}}" required>
 			</div>
 			<div class="col">
 				<!-- Last name -->
-				<input type="text" name="last_name" id="last_name" class="form-control"
+				<input type="text" name="last_name" id="last_name" class="form-control text-capitalize"
 					   placeholder="Last name" pattern="[A-Za-z]{2,15}" required>
 			</div>
 		</div>
 
 		<div class="form-row mb-3 pl-1 pr-1">
 			<!-- Username -->
-			<input type="text" name="username" id="username" class="form-control mb-3" data-toggle="tooltip"  data-placement="right"
-					   title="can only contain (characters, digits, ( . ) , ( _ ) )" placeholder="Username"
-				   pattern="[a-z\d._-]{5,25}$"
-				   required>
+			<input type="text" name="username" id="username" class="form-control mb-3 text-lowercase" placeholder="Username"
+				   pattern="[a-z\d._-]+$" onkeyup="return forceLower(this);" required>
 		</div>
 		<div class="form-row mb-3 pl-1 pr-1">
 			<!-- E-mail -->
-			<input type="text" name="email" id="email" class="form-control mb-3" placeholder="E-mail"
-				   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+			<input type="text" name="email" id="email" class="form-control mb-3 text-lowercase" placeholder="E-mail"
+				   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onkeyup="return forceLower(this);" required>
 		</div>
 		<!-- Password -->
 		<div class="form-row mb-3">
 			<div class="col">
 				<!-- Password -->
-				<input type="password" name="password1" id="password" data-toggle="tooltip"  data-placement="right"
-					   title="Must contain minimum 8 characters." class="input-text form-control"
-					   placeholder="Password"
-					   aria-describedby="defaultRegisterFormPasswordHelpBlock" pattern="[\S]{8,25}" required>
+				<input type="password" name="password" id="password" class="input-text form-control"
+					   placeholder="Password" required>
 			</div>
 			<div class="col">
 				<!-- Confirm Password -->
@@ -81,13 +77,13 @@
 		<!-- Sign up button -->
 		<button class="btn btn-lightgreen my-4 btn-block" type="submit">Sign up</button>
 
-		<!-- Social register -->
-		<p>or sign up with:</p>
 
-		<a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
-		<a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
-		<a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
-		<a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+		<div class="d-flex justify-content-around">
+            <div>
+                <!-- Forgot password -->
+                <a href="{% url 'request-password' %}">Forgot password?</a>
+            </div>
+        </div>
 
 		<hr>
 
@@ -101,51 +97,77 @@
 
 </div>
 
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="{% static 'js/base/common-js/jquery-3.3.1.min.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-<script>
-<!--		 just for the demos, avoids form submit-->
-		jQuery.validator.setDefaults({
-		  	debug: true,
-			submitHandler: function(form){
-				form.submit()
-   		 	}
-		});
-		$( "#myform" ).validate({
-		  	rules: {
-			    password: {
-			    	minlength: 8
-			    },
-			    confirm_password: {
-		      		minlength: 8,
-		      		equalTo: "#password"
-		    	}
-		  	},
-		  	errorElement: 'small',
-		  	messages: {
-		  		first_name: {
-		  			required: "Please enter First Name"
-		  		},
-		  		last_name: {
-		  			required: "Please enter Last Name"
-		  		},
-		  		username: {
-		  			required: "Please provide a username"
-		  		}
-		  		email: {
-		  			required: "Please provide an email"
-		  		},
-		  		password: {
-	  				required: "Please enter Password"
-		  		},
-		  		confirm_password: {
-		  			required: "Please enter Password",
-		      		equalTo: "Password did not match"
-		    	}
-		  	}
-		});
+
+<script type="text/javascript">
+
+	jQuery.validator.setDefaults({
+		debug: true,
+	  submitHandler: function(form){
+		  form.submit()
+		  }
+  });
+  $( "#register_form" ).validate({
+		rules: {
+		  password: {
+				minlength: 8
+		  },
+		  email: {
+			  remote: {
+				  url: '{% url "check_email_notexists" %}',
+				  type: 'GET'
+			  }
+		  },
+		  username: {
+			  minlength: 3,
+			  maxlength: 25,
+			  remote: {
+				  url: '{% url "check_username_notexists" %}',
+				  type: 'GET'
+			  }
+			},
+			confirm_password: {
+				minlength: 8,
+				equalTo: "#password"
+		  }
+		},
+		errorElement: 'small',
+		
+		messages: {
+			first_name: {
+				required: "Please enter First Name"
+			},
+			last_name: {
+				required: "Please enter Last Name"
+			},
+			username: {
+				required: "Please provide a username",
+				remote: 'Username already exists'
+			},
+			email: {
+				required: "Please provide an email",
+				remote: 'Email already exist'
+			},
+			password: {
+				minlength: jQuery.validator.format("At least {0} characters required!"),
+				required: "Please enter Password"
+			},
+			confirm_password: {
+				required: "Please enter Password",
+				equalTo: "Password did not match"
+		  }
+		}
+  });
+
+function forceLower(strInput) 
+{
+strInput.value=strInput.value.toLowerCase();
+}
+
 </script>
+
 
 
 {% endblock content %}

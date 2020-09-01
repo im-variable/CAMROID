@@ -14,7 +14,7 @@
         <p class="h2 mb-4">Sign in</p>
 
         <!-- Email -->
-        <input type="text" class="form-control mb-4" placeholder="Username" name="username" required>
+        <input type="text" class="form-control mb-4 text-lowercase" placeholder="Username" name="username" required>
 
         <!-- Password -->
         <input type="password" class="form-control mb-4" placeholder="Password" name="password" required>
@@ -41,13 +41,13 @@
             <a href="{% url 'register' %}">Register</a>
         </p>
 
-        <!-- Social login -->
+        {% comment %} <!-- Social login -->
         <p>or sign in with:</p>
 
         <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
         <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
         <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
-        <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+        <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a> {% endcomment %}
 
     </form>
     <!-- Default form login -->
