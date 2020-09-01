@@ -16,7 +16,10 @@ from django.views import View
 
 # Create your views here.
 
-UPLOAD_FOLDER = (Path(__file__).parent.parent/ "media/").resolve()
+UPLOAD_FOLDER =  os.path.abspath(os.path.dirname(__name__))
+
+print("UPLOAD_FOLDER", UPLOAD_FOLDER)
+# UPLOAD_FOLDER = (Path(__file__).parent.parent/ "media/").resolve()
 
 # for carousel in index page
 def cat_suggestions():
@@ -126,7 +129,7 @@ def myspace(request):
                     if bool(already_Uploaded) == False:
                         def process(f):
                             imgdetail = ImgDetails.objects.create(Img=imgname, keywords=keywords, User_id=user.id, Category_id=Cat)
-                            with open(str(UPLOAD_FOLDER) + '/' + imgname, 'wb+') as destination:
+                            with open(str(UPLOAD_FOLDER) + '/static/media/' + imgname, 'wb+') as destination:
                                 for chunk in f.chunks():
                                     destination.write(chunk)
                             messages.success(request, '{0} uploaded successfully'.format(imgname))
@@ -151,7 +154,7 @@ def myspace(request):
                 if profile_img.name.endswith(tuple(ALLOWED_EXTENTIONS)):
                     if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
                         try:
-                            os.remove("media/"+user.userprofile.profile_img.name)
+                            os.remove("static/media/"+user.userprofile.profile_img.name)
                         except Exception as identifier:
                             messages.error(request, "Something went wrong")
                         finally:
@@ -170,7 +173,7 @@ def myspace(request):
             if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
                 
                 try:
-                    os.remove("media/"+user.userprofile.profile_img.name)
+                    os.remove("static/media/"+user.userprofile.profile_img.name)
                     user.userprofile.profile_img = ''
                     messages.info(request, 'Profile image deleted successfully')
                     user.userprofile.profile_img = 'ProfileImg/default-avatar.png'
@@ -216,6 +219,9 @@ def myspace(request):
         pro_queryset.append({'id': result.id, 'Img': result.Img.url,
                              'UploadDate': calendar.month_name[result.month] + "-" + str(result.year)})
 
+    for x in pro_queryset:
+        print("x", x)
+        
     collect_queryset = ImgDetails.objects.filter(User_id=user.id, Valid=True).annotate(month=ExtractMonth('UploadDate'),
                                                                                        year=ExtractYear('UploadDate'))
     col_queryset = []
