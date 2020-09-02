@@ -18,7 +18,6 @@ from django.views import View
 
 UPLOAD_FOLDER =  os.path.abspath(os.path.dirname(__name__))
 
-print("UPLOAD_FOLDER", UPLOAD_FOLDER)
 # UPLOAD_FOLDER = (Path(__file__).parent.parent/ "media/").resolve()
 
 # for carousel in index page
