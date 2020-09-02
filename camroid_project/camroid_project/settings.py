@@ -29,10 +29,14 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
+# remote
+# DEBUG = False
 ALLOWED_HOSTS = ['camroid.herokuapp.com', '127.0.0.1']
 
+# local
+# ALLOWED_HOSTS = []
+DEBUG = True
 
 # Application definition
 
@@ -132,8 +136,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -162,4 +164,4 @@ MESSAGE_TAGS = {
     50: 'critical',
 }
 
-django_heroku.settings(local())
+django_heroku.settings(locals())

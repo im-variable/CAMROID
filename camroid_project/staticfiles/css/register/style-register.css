@@ -1,0 +1,21 @@
+
+.register-form{
+    width: 37%;
+    margin-top: 50px;
+    margin-left: 30%;
+    background-color: white;
+}
+
+a{
+text-decoration: none;
+}
+
+
+@media (max-width: 991.98px) {
+.register-form{
+    width: 90%;
+    margin-top: 50px;
+    margin-left: 5%;
+    background-color: white;
+}
+}
