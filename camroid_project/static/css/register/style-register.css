@@ -10,11 +10,6 @@ a{
 text-decoration: none;
 }
 
-#main{
- background-size: cover;
- background-image: url("/static/images/1511.jpg");
-}
-
 
 @media (max-width: 991.98px) {
 .register-form{
