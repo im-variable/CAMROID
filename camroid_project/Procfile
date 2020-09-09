@@ -1,0 +1,1 @@
+web: gunicorn camroid_project.wsgi --log-file -

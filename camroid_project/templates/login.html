@@ -14,7 +14,7 @@
         <p class="h2 mb-4">Sign in</p>
 
         <!-- Email -->
-        <input type="text" class="form-control mb-4 text-lowercase" placeholder="Username" name="username" required>
+        <input type="text" class="form-control mb-4 text-lowercase" placeholder="Username" name="username" onkeyup="return forceLower(this);" required>
 
         <!-- Password -->
         <input type="password" class="form-control mb-4" placeholder="Password" name="password" required>
@@ -53,5 +53,13 @@
     <!-- Default form login -->
 </div>
 
+<script type='text/javascript'>
+
+function forceLower(strInput) 
+{
+strInput.value=strInput.value.toLowerCase();
+}
+
+</script>
 
 {% endblock content %}

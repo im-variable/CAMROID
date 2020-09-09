@@ -18,7 +18,10 @@ from django.views import View
 
 UPLOAD_FOLDER =  os.path.abspath(os.path.dirname(__name__))
 
+<<<<<<< HEAD
 print("UPLOAD_FOLDER", UPLOAD_FOLDER)
+=======
+>>>>>>> 3fdd9a2e17ecbbf4222c6f59cecf13d4c92acbf1
 # UPLOAD_FOLDER = (Path(__file__).parent.parent/ "media/").resolve()
 
 # for carousel in index page
@@ -116,9 +119,9 @@ def myspace(request):
 
         if request.POST['action'] == 'Upload':
 
-            keywords = request.POST['keywords']
+            keywords = request.POST.get('keywords', 'images')
             
-            Cat = request.POST['Category']
+            Cat = request.POST.get('Category', 1)
 
             for count, x in enumerate(request.FILES.getlist("files[]")):
 
@@ -185,7 +188,6 @@ def myspace(request):
 
                 first_name = request.POST.get('first_name')
                 last_name = request.POST.get('last_name')
-                print(request.POST.get('email'))
                 email = request.POST.get('email')
 
                 user.first_name = first_name
@@ -197,14 +199,10 @@ def myspace(request):
 
         elif request.POST['action'] == 'change-pass':
             username = request.POST.get('username')
-            print("id: ",username)
             old_pass = request.POST.get('oldPassword')
-            print("old: ",old_pass)
             new_pass = request.POST.get('newPassword')
-            print("new: ",new_pass)
             if username is not None:
                 user_data = authenticate(username=username, password=old_pass)
-                print('user: ', user_data)
                 if user_data is not None:
                     user_data.set_password(new_pass)
                     user_data.save()
@@ -245,7 +243,6 @@ def category(request):
     for x in imgList:
         arrList.append([x.id, x.Category, x.Cat_Img.url])
 
-    print(arrList)
     return render(request, 'category.html', {'arrList': arrList})
 
 
@@ -253,7 +250,7 @@ class AboutUs(View):
 
     def get(self, request):
     
-        admin_user = User.objects.get(username='im.variable')
+        admin_user = User.objects.get(is_superuser=True)
         user = User.objects.filter(id=request.user.id).first()
 
         if not user:

@@ -1,0 +1,300 @@
+
+/* ---------------------------------
+1. PRIMARY STYLES
+--------------------------------- */
+
+/* a, button{ display: inline-block; text-decoration: none; color: inherit; line-height: 1;
+	-webkit-transition: all .25s ease-in-out; transition: all .25s ease-in-out; } */
+
+/*
+a:focus, a:active, a:hover,
+button:focus, button:active, button:hover,
+a b.light-color:hover{ text-decoration: none; color: #FFA804; }
+*/
+
+b{ font-weight: 600; }
+
+img{ width: 100%; }
+
+ul.social-icons li{ list-style: none; display: inline-block; }
+
+span{ display: inline-block; }
+
+button{ outline: 0; border: 0; background: none; cursor: pointer; border-radius: 50%; }
+
+.icon{ font-size: 1.1em; display: inline-block; line-height: inherit; }
+
+[class^="icon-"]:before, [class*=" icon-"]:before{ line-height: inherit; }
+
+b.max-bold{ font-weight: 700; }
+
+
+
+/* ---------------------------------
+2. COMMONS FOR PAGE DESIGN
+--------------------------------- */
+
+/*
+.section{ padding: 0px 0 50px; }
+*/
+
+/*
+.section .heading{ margin-bottom: 60px; }
+*/
+
+/*
+.section .heading:before{ content:''; height: 10px; width: 50px; border-radius: 5px;
+	margin-bottom: 20px; display: block; background: #FFA804; }
+*/
+
+.margin-t-10{ margin-top: 10px; }
+
+.margin-b-30{ margin-bottom: 30px; }
+.margin-b-50{ margin-bottom: 50px; }
+
+.margin-tb-30{ margin-top: 30px; margin-bottom: 30px; }
+
+.font-red{ color: #ef6c57 !important; }
+
+.font-semi-white{ color: #ddd; }
+
+.font-lite-black{ color: #999; }
+
+
+/* ---------------------------------
+4. INTRO SECTION
+--------------------------------- */
+
+.intro{ margin-top: 40px; text-align: center; background: #fff; }
+
+.intro .profile-img{ height: 200px; width: 200px; border-radius: 100px; margin: 0 auto; bottom: 10px;
+	overflow: hidden; position: relative; background-color: black }
+
+.user-full-name{
+text-transform: uppercase;
+}
+
+
+div.form-group div.form-row{
+padding:10px 10px 10px 10px;
+}
+
+div.form-group div.form-row .form-control-file{
+width: 285px;
+}
+
+
+div.profile_data{
+padding-bottom: 15px;
+width: 100%;
+}
+
+.nav-tabs .nav-link{
+  color: #000000;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover{
+    color: #ef6c57 !important;
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-radius: 5px;
+    color: white !important;
+    background-color: #ef6c57 !important;
+}
+
+
+/* Style the Image Used to Trigger the Modal */
+.img_container{
+cursor: pointer;
+width: 15%;
+}
+
+.img_container:hover {opacity: 0.7;}
+
+
+/* The Modal (background) */
+#imagemodal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  /*z-index: 1;*/ /* Sit on top */
+  padding-top: 50px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+#imagemodal .modal-content{
+  width: 100%;
+  margin: auto;
+  display: block;
+/*  width: 80%;
+  max-width: 800px;*/
+}
+
+#imagemodal .modal-body{
+    padding:0px;
+}
+/* Add Animation - Zoom in the Modal */
+#imagemodal .modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+/*#imagemodal #caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 5px 0;
+}
+
+#imagemodal #caption span.material-icons {
+  cursor: pointer !important;
+    color: grey !important;
+}
+
+#imagemodal #caption span.material-icons:hover {
+    color: black !important;
+}*/
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus{
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* 100% Image Width on Smaller Screens */
+/*
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+*/
+
+/* Style the button and place it in the middle of the container/image */
+
+.img_container span.material-icons {
+    cursor: pointer !important;
+    color: grey !important;
+    margin-left: 40% !important
+}
+
+.img_container span.material-icons:hover {
+    color: black !important;
+}
+
+div.card-body span.img_container{
+padding: 1px
+}
+
+input.profile-upload{
+    display: none;
+}
+
+.profile-image-upload{
+    display: inline-block;
+    cursor: pointer;
+}
+
+.change-password-modal{
+width: 300px;
+padding: 40px;
+}
+
+.change-password-icon{
+float: right;
+margin: 20px;
+cursor: pointer;
+color: #ffbb33;
+}
+
+
+.header-line{
+    text-align: center;
+    align-item: center;
+    background-color: grey !important;
+    color: white !important;
+}
+
+.header-line h3.align-header{
+    margin: auto;
+}
+
+.upload-image-form .form-control, .upload-image-form .form-control-file{
+    width: 285px;
+}
+
+.upload-image-form .md-form .form-control {
+    margin: 8px 0px 0.5rem 0;
+}
+
+#changePassModaltop{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+#uploadfile{
+margin: 0 !important;
+}
+
+.modal-dialog.modal-notify .modal-body {
+  padding: 0rem 1.5rem 0rem 1.5rem;
+}
+
+@media (min-width: 991.98px) {
+
+ul.nav-tabs{
+    padding: 15px 15px 15px 15px;
+    margin-left: 32%;
+}
+
+}
+
+
+@media (max-width: 991.98px) {
+
+ul.nav-tabs{
+    padding: 15px 15px 15px 15px;
+}
+
+}
+
+i.fa-angle-down.rotate-icon{
+    float: right;
+}
+
+a.collapsable-text-color{
+  color: #000000;
+  font-weight: 600;
+}

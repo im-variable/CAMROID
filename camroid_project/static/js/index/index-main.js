@@ -251,7 +251,13 @@ $('[data-fancybox="gallery"]').fancybox({
 });
 
 
-$( "div.carousel-inner div.carousel-item:first-child" )
-  .addClass("active")
+$('.carousel-inner .carousel-item:first').addClass('active');
+
+  $("#multi-item-example").carousel({
+	interval : false
+});
+
+
 
 });
+
