@@ -16,24 +16,21 @@ from django.views import View
 
 # Create your views here.
 
-UPLOAD_FOLDER =  os.path.abspath(os.path.dirname(__name__))
-
-<<<<<<< HEAD
-print("UPLOAD_FOLDER", UPLOAD_FOLDER)
-=======
->>>>>>> 3fdd9a2e17ecbbf4222c6f59cecf13d4c92acbf1
-# UPLOAD_FOLDER = (Path(__file__).parent.parent/ "media/").resolve()
+UPLOAD_FOLDER = os.path.abspath(os.path.dirname(__name__))
 
 # for carousel in index page
+
+
 def cat_suggestions():
     category_ = categoryList()
-    cat_suggestions = []
-    i = 0
-    while i < len(category_):
-        cat_suggestions.append(category_[i:i+6])
-        i+=6
+    cat_suggestions = list(category_)
 
-    # print('suggestion', cat_suggestions)
+    # i = 0
+    # while i < len(category_):
+    #     cat_suggestions.append(category_[i:i+6])
+    #     i+=6
+
+    print('suggestion', cat_suggestions)
     return cat_suggestions
 
 # # for random string generator for file name
@@ -44,19 +41,26 @@ def cat_suggestions():
 #     return result_str
 
 # for category list
+
+
 def categoryList():
-    _catList = CategoryList.objects.all().values_list('id', 'Category').order_by('Category')
+    _catList = CategoryList.objects.all().values_list(
+        'id', 'Category').order_by('Category')
     # print("Catlist:", _catList)
     return _catList
 
 # for search suggestion
+
+
 def getSuggestion(request):
 
     if request.method == "GET":
 
-        SuggestList = ImgDetails.objects.values_list('keywords', flat=True).order_by('keywords')
+        SuggestList = ImgDetails.objects.values_list(
+            'keywords', flat=True).order_by('keywords')
 
-        suggestions = list(set([item for sublist in SuggestList for item in str(sublist).split(',')]))
+        suggestions = list(
+            set([item for sublist in SuggestList for item in str(sublist).split(',')]))
 
     return JsonResponse(suggestions, safe=False)
 
@@ -65,7 +69,8 @@ def getSuggestion(request):
 
 
 def index(request):
-    catVal = int(request.GET.get('val')) if request.GET.get('val') != None else 1
+    catVal = int(request.GET.get('val')) if request.GET.get(
+        'val') != None else 1
 
     category_ = cat_suggestions()
     if request.method == 'GET':
@@ -81,11 +86,10 @@ def index(request):
         print("searchVal: ", searchVal)
         arrSearch = re.findall(r"[\w']+", searchVal)
 
-
-
         imgList = None
         for val in arrSearch:
-            imgList = ImgDetails.objects.filter(Valid=True, keywords__icontains=val)
+            imgList = ImgDetails.objects.filter(
+                Valid=True, keywords__icontains=val)
 
     if imgList == None:
         imgList = ImgDetails.objects.filter(Valid=True)
@@ -106,7 +110,8 @@ def index(request):
     return render(request, 'index.html', {'arrList': page_obj, 'category_': category_})
 
 
-ALLOWED_EXTENTIONS = ['png','jpg','jpeg']
+ALLOWED_EXTENTIONS = ['png', 'jpg', 'jpeg']
+
 
 @login_required(login_url='login')
 def myspace(request):
@@ -120,22 +125,25 @@ def myspace(request):
         if request.POST['action'] == 'Upload':
 
             keywords = request.POST.get('keywords', 'images')
-            
+
             Cat = request.POST.get('Category', 1)
 
             for count, x in enumerate(request.FILES.getlist("files[]")):
 
                 if x.name.endswith(tuple(ALLOWED_EXTENTIONS)):
                     imgname = str(user.id) + '-' + str(x)
-                    already_Uploaded = ImgDetails.objects.filter(Img=imgname).exists()
+                    already_Uploaded = ImgDetails.objects.filter(
+                        Img=imgname).exists()
 
                     if bool(already_Uploaded) == False:
                         def process(f):
-                            imgdetail = ImgDetails.objects.create(Img=imgname, keywords=keywords, User_id=user.id, Category_id=Cat)
+                            imgdetail = ImgDetails.objects.create(
+                                Img=imgname, keywords=keywords, User_id=user.id, Category_id=Cat)
                             with open(str(UPLOAD_FOLDER) + '/static/media/' + imgname, 'wb+') as destination:
                                 for chunk in f.chunks():
                                     destination.write(chunk)
-                            messages.success(request, '{0} uploaded successfully'.format(imgname))
+                            messages.success(
+                                request, '{0} uploaded successfully'.format(imgname))
                         process(x)
             # return render(request, 'myspace.html', {"Upload_catList": Upload_catList, "uploadedList": uploadedList, 'col_queryset': col_queryset, 'pro_queryset': pro_queryset})
 
@@ -153,20 +161,23 @@ def myspace(request):
 
                 profile_img = request.FILES['profile-upload']
 
-                print('profile image:', user.userprofile.profile_img.name )
+                print('profile image:', user.userprofile.profile_img.name)
                 if profile_img.name.endswith(tuple(ALLOWED_EXTENTIONS)):
                     if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
                         try:
-                            os.remove("static/media/"+user.userprofile.profile_img.name)
+                            os.remove("static/media/" +
+                                      user.userprofile.profile_img.name)
                         except Exception as identifier:
                             messages.error(request, "Something went wrong")
                         finally:
                             user.userprofile.profile_img = None
                     user.userprofile.profile_img = profile_img
                     user.save()
-                    messages.success(request, 'Profile image updated successfully')
+                    messages.success(
+                        request, 'Profile image updated successfully')
                 else:
-                    messages.error(request, 'Choose a correct file format(ex: {0})'.format(ALLOWED_EXTENTIONS))
+                    messages.error(
+                        request, 'Choose a correct file format(ex: {0})'.format(ALLOWED_EXTENTIONS))
                     return redirect('myspace')
             else:
                 messages.warning(request, 'Select an image to upload')
@@ -174,11 +185,13 @@ def myspace(request):
         elif request.POST['action'] == 'delete-upload':
 
             if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
-                
+
                 try:
-                    os.remove("static/media/"+user.userprofile.profile_img.name)
+                    os.remove("static/media/" +
+                              user.userprofile.profile_img.name)
                     user.userprofile.profile_img = ''
-                    messages.info(request, 'Profile image deleted successfully')
+                    messages.info(
+                        request, 'Profile image deleted successfully')
                     user.userprofile.profile_img = 'ProfileImg/default-avatar.png'
                     user.save()
                 except Exception as identifier:
@@ -186,16 +199,16 @@ def myspace(request):
 
         elif request.POST['action'] == 'update-account':
 
-                first_name = request.POST.get('first_name')
-                last_name = request.POST.get('last_name')
-                email = request.POST.get('email')
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+            email = request.POST.get('email')
 
-                user.first_name = first_name
-                user.last_name = last_name
-                user.email = email
+            user.first_name = first_name
+            user.last_name = last_name
+            user.email = email
 
-                user.save()
-                messages.success(request, 'Profile detail updated successfully')
+            user.save()
+            messages.success(request, 'Profile detail updated successfully')
 
         elif request.POST['action'] == 'change-pass':
             username = request.POST.get('username')
@@ -219,7 +232,7 @@ def myspace(request):
 
     for x in pro_queryset:
         print("x", x)
-        
+
     collect_queryset = ImgDetails.objects.filter(User_id=user.id, Valid=True).annotate(month=ExtractMonth('UploadDate'),
                                                                                        year=ExtractYear('UploadDate'))
     col_queryset = []
@@ -249,7 +262,7 @@ def category(request):
 class AboutUs(View):
 
     def get(self, request):
-    
+
         admin_user = User.objects.get(is_superuser=True)
         user = User.objects.filter(id=request.user.id).first()
 
@@ -258,15 +271,15 @@ class AboutUs(View):
             print('authentication req')
             return render(request, "aboutus.html", {'admin_user': admin_user})
         else:
-        
+
             if self.request.is_ajax() and self.request.method == "GET":
 
                 sentiment_Value = request.GET.get("sentiment_Value", None)
-            
-                user.userprofile.feedback = sentiment_Value 
-                user.save()            
+
+                user.userprofile.feedback = sentiment_Value
+                user.save()
                 print('feedback saved')
-            
+
                 return render(request, "aboutus.html", {'admin_user': admin_user, 'user': user})
-        
+
         return render(request, "aboutus.html", {'admin_user': admin_user, 'user': user})
