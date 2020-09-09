@@ -272,22 +272,19 @@ margin: 0 !important;
   padding: 0rem 1.5rem 0rem 1.5rem;
 }
 
-@media (min-width: 991.98px) {
+@media only screen and (max-width: 991.98px) {
 
 ul.nav-tabs{
-    padding: 15px 15px 15px 15px;
-    margin-left: 32%;
+    padding: 0px;
 }
 
+.upload-image-form .form-control, .upload-image-form .form-control-file{
+  width: 200px;
 }
 
-
-@media (max-width: 991.98px) {
-
-ul.nav-tabs{
-    padding: 15px 15px 15px 15px;
-}
-
+div.form-group div.form-row .form-control-file{
+  width: 200px;
+  }
 }
 
 i.fa-angle-down.rotate-icon{

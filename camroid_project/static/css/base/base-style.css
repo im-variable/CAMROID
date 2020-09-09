@@ -506,7 +506,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .search-bar{
-width: 350px !important }
+width: 300px !important }
 
 .header-section {
 	padding-top: 15px;
@@ -813,7 +813,7 @@ color: #28a745;
 
 .copyright {
 	color: #fff;
-	font-size: 11px;
+	font-size: 15px;
 	font-weight: 500;
 	padding: 4px 0;
 }
@@ -1247,6 +1247,21 @@ color: #0ECE91;
 		background: #25394c;
 		color: #fff;
 	}
+
+	.contact-text {
+		margin-bottom: 50px;
+	}
+	.footer-social-links {
+		text-align: center;
+		padding-top: 20px;
+	}
+	.footer-social-links a:first-child {
+		margin-left: 0;
+	}
+	.copyright {
+		padding-top: 15px;
+		text-align: center;
+	}
 }
 
 	/*.skill-warp {
@@ -1282,20 +1297,7 @@ color: #0ECE91;
 	.blog-post p {
 		padding: 0;
 	}
-	.contact-text {
-		margin-bottom: 50px;
-	}
-	.footer-social-links {
-		text-align: center;
-		padding-top: 20px;
-	}
-	.footer-social-links a:first-child {
-		margin-left: 0;
-	}
-	.copyright {
-		padding-top: 15px;
-		text-align: center;
-	}
+	
 */
 /*	.search-model-form input {
 		width: 100%;

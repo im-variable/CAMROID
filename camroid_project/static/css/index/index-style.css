@@ -844,11 +844,9 @@ text-align: center;
 @media (min-width: 991.99px) {
 
 .carousel-item .grid-container .grid-item {
-/* padding: 0em 0em 0em 0em;*/
-    margin: 1em 3em 1em 3em;
-  font-weight: bold;
+    margin: 1em 1em 1em 1.5em;
+    font-weight: bold;
 }
-
 
 #id{
     width: 100%!important;
@@ -856,6 +854,16 @@ text-align: center;
     margin-bottom: 0.5em;
     border-radius: 0.5em;
 }
+
+.btn-floating{
+  margin-top: 30px;
+  color: #0ECE91;
+}
+
+.btn-floating:hover{
+  color: #0ECE91;
+}
+
 }
 
 
@@ -871,4 +879,18 @@ img.img-fluid:hover{
 	-webkit-transform: scale(1.02);
 	-ms-transform: scale(1.02);
 	transform: scale(1.02);
+}
+
+.btn-floating{
+  margin-top: 18px;
+  color: #0ECE91;
+}
+
+.btn-floating:hover{
+  color: #0ECE91;
+}
+
+.carousel-row{
+  width: 100%;
+  flex-wrap: nowrap !important;
 }

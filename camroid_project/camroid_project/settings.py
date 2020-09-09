@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['camroid.herokuapp.com', '127.0.0.1']
 
 # local
 # ALLOWED_HOSTS = []
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 # Application definition
 
@@ -165,3 +165,4 @@ MESSAGE_TAGS = {
 }
 
 django_heroku.settings(locals())
+

@@ -20,17 +20,22 @@ height: 30vh !important;
 
 }
 
-@media (max-width: 991.98px) {
+@media only screen and (max-width: 991.98px) {
 
 .grid-container {
   margin: 1em;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto;
+  margin: 1%;
+  justify-content: space-evenly;
 }
 
+.category-container{
+  margin-right: 15px;
+}
 .grid-items {
-  margin : 1em;
-  font-weight: bold
+  font-weight: bold;
+  padding: 8px;
 }
 
 div.media a img {

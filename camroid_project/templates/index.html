@@ -27,10 +27,19 @@
     <!-- Photo Galleries -->
     <div class="gallery">
 
-        <div id="multi-item-example" class="carousel carousel-multi-item" data-ride="carousel">
+
+
+<div class='row carousel-row'>
+<div class='col-1 text-center'>
+    <a class="btn-floating" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+</div>
+
+<div class='col-10'>
+
+    <div id="myCarousel" class="carousel slide">
 
             <!--Slides-->
-            <div class="carousel-inner" role="listbox">
+        <div class="carousel-inner" role="listbox">
 
                 <!--First slide-->
                 {% for cat_item in category_ %}
@@ -51,6 +60,12 @@
 
         </div>
         <!--/.Carousel Wrapper-->
+</div>
+
+<div class='col-1 text-center'>
+    <a class="btn-floating" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+</div>
+</div>
 
 
         <main class="main-content">
