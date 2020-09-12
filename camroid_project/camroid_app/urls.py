@@ -8,6 +8,7 @@ urlpatterns = [
     path('category', views.category, name='category'),
     path('aboutus', views.AboutUs.as_view(), name='aboutus'),
     url(r'^getSuggestion/$', views.getSuggestion, name='getSuggestion'),
+    path('single/<str:img_name>', views.Single.as_view(), name='single'),
     # url(r'^aboutus/$', views.AboutUs.as_view(), name='aboutus'),
-    
+
 ]

@@ -19,7 +19,7 @@ import threading
 
 def check_email_exists(request):
 
-    email = request.GET.get("email")    
+    email = request.GET.get("email")
     email_exists = User.objects.filter(email=email, is_active=True).exists()
 
     return JsonResponse(email_exists, safe=False)
@@ -28,7 +28,8 @@ def check_email_exists(request):
 def check_username_notexists(request):
 
     username = request.GET.get("username")
-    username_exists = not User.objects.filter(username=username, is_active=True).exists()
+    username_exists = not User.objects.filter(
+        username=username, is_active=True).exists()
 
     return JsonResponse(username_exists, safe=False)
 
@@ -39,11 +40,13 @@ def check_email_notexists(request):
     email = request.GET.get("email")
     print(validate_email(email, verify=True))
     if validate_email(email, verify=True):
-        email_exists = not User.objects.filter(email=email, is_active=True).exists()
+        email_exists = not User.objects.filter(
+            email=email, is_active=True).exists()
 
     return JsonResponse(email_exists, safe=False)
 
 # --------------------------------------------------------------------------------------------------
+
 
 def login(request):
 
@@ -58,7 +61,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             userdetail = User.objects.get(username=request.user.username)
-            print('userdetail: ',userdetail)
+            print('userdetail: ', userdetail)
             messages.info(request, 'Welcome, '+userdetail.username)
             # return render(request, 'myspace.html', {'user': userdetail})
             return redirect('myspace')
@@ -107,9 +110,9 @@ def register(request):
 
                 activate_url = "http://"+domain+link
 
-                email_body = "Hi <b>" + user.username + "</b>,<br>To complete your sign up, we just need to verify your email address. Click below link to activate your account <br>" + activate_url + "."
+                email_body = "Hi <b>" + user.username + \
+                    "</b>,<br>To complete your sign up, we just need to verify your email address. Click below link to activate your account <br>" + activate_url + "."
                 email_subject = '[CAMROID] Please verify your email address for account activation'
-
 
                 email_message = EmailMessage(
                     email_subject,
@@ -119,7 +122,8 @@ def register(request):
                 )
                 email_message.content_subtype = "html"
                 EmailThreading(email_message).start()
-                messages.success(request, 'Activation link has been send to your email')
+                messages.success(
+                    request, 'Activation link has been send to your email')
                 print("user created")
                 return redirect('login')
         else:
@@ -144,7 +148,8 @@ class ActivateAccountView(View):
             user = User.objects.get(pk=uid)
 
             if not generate_token.check_token(user, token):
-                messages.add_message(request, messages.INFO, "Account already activated")
+                messages.add_message(request, messages.INFO,
+                                     "Account already activated")
                 return redirect('login')
 
             if user.is_active:
@@ -152,7 +157,8 @@ class ActivateAccountView(View):
 
             user.is_active = True
             user.save()
-            messages.add_message(request, messages.SUCCESS, "Account activated successfully")
+            messages.add_message(request, messages.SUCCESS,
+                                 "Account activated successfully")
             return redirect('login')
 
         except Exception as ex:
@@ -191,14 +197,14 @@ class RequestPasswordResetEmail(View):
 
             reset_url = "http://"+current_site.domain+link
 
-
             email_message = EmailMessage(
                 email_subject,
-                'Hi there, Please click the link below to reset your password \n' + reset_url,
+                "Hi <b>" + user[0].username +
+                "</b>,<br> Please click the link below to reset your password <br>" + reset_url,
                 'noreplyuser97@gmail.com',
                 [email]
             )
-
+            email_message.content_subtype = "html"
             EmailThreading(email_message).start()
             messages.success(request, "Reset password email has been sent.")
         else:
@@ -206,6 +212,7 @@ class RequestPasswordResetEmail(View):
             return render(request, 'reset-password.html', context)
 
         return render(request, 'reset-password.html')
+
 
 class CompletePasswordReset(View):
     def get(self, request, uidb64, token):
@@ -222,7 +229,8 @@ class CompletePasswordReset(View):
 
             if not PasswordResetTokenGenerator().check_token(user, token):
 
-                messages.info(request, "Password link is expired, please request a new one")
+                messages.info(
+                    request, "Password link is expired, please request a new one")
                 return render(request, 'reset-password.html')
 
         except Exception as identifier:
@@ -258,6 +266,7 @@ class CompletePasswordReset(View):
             return render(request, "set-new-password.html", context)
 
         # return render(request, "set-new-password.html", context)
+
 
 class EmailThreading(threading.Thread):
 

@@ -94,12 +94,12 @@ def index(request):
     if imgList == None:
         imgList = ImgDetails.objects.filter(Valid=True)
 
-    lst = []
-    for x in imgList:
-        lst.append(x.Img.url)
+    # lst = []
+    # for x in imgList:
+    #     lst.append(x.Img.url)
 
     page_number = request.GET.get('page')
-    paginator = Paginator(lst, 20)
+    paginator = Paginator(imgList, 20)
     try:
         page_obj = paginator.get_page(page_number)
     except PageNotAnInteger:
@@ -283,3 +283,14 @@ class AboutUs(View):
                 return render(request, "aboutus.html", {'admin_user': admin_user, 'user': user})
 
         return render(request, "aboutus.html", {'admin_user': admin_user, 'user': user})
+
+
+class Single(View):
+    def get(self, request, img_name):
+
+        single_img = ImgDetails.objects.filter(Img=img_name).first()
+
+        return render(request, 'single.html', {"single_img": single_img})
+
+    def post(self, request):
+        return render(request, 'single.html', {})

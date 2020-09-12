@@ -37,14 +37,10 @@
     <main class="main-content">
       <div class="container-fluid photos">
         <div class="align-items-stretch">
-          {% for img in arrList %}
+          {% for data in arrList %}
           <div data-aos="fade-up">
-            <a
-              href="{{img}}"
-              class="d-block photo-item"
-              data-fancybox="gallery"
-            >
-              <img src="{{img}}" id="id" class="img-fluid" />
+            <a href="{% url 'single' data.Img %}">
+              <img src="{{data.Img.url}}" id="id" class="img-fluid" />
               <div class="photo-text-more">
                 <span class="icon icon-camera"></span>
               </div>
