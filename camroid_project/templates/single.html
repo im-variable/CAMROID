@@ -14,26 +14,26 @@
     </div>
     <div class="col-3">
       <div class="row"></div>
-      <div class="row">
-<!-- Large split button group -->
-<div class="btn-group">
-  <button type="button" class="btn btn-lightgreen btn-lg">Download</button>
-  <button type="button" class="btn btn-lightgreen btn-lg dropdown-toggle px-3" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false">
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-  <div class="dropdown-menu">
-  <form action="{% url 'single'%}" method="post">
-    <a class="dropdown-item" href="#">Original</a>
-    <a class="dropdown-item" href="#">Large (16:9)</a>
-    <a class="dropdown-item" href="#">Medium (8:5)</a>
-    <a class="dropdown-item" href="#">Small (4:3)</a>
-    <a class="dropdown-item" href="#">Square (1:1)</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Separated link</a>
-  </form>
-  </div>
-</div>
+      <div class="row mx-4">
+        <!-- Large split button group -->
+        <div class="btn-group">
+          <button type="button" class="btn btn-lightgreen">Download</button>
+          <button type="button" class="btn btn-lightgreen dropdown-toggle px-3" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" data-reference="parent">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu ml-2 mt-0 px-3">
+          <form action="{% url 'single'%}" method="post">
+            <a class="dropdown-item" href="#">Original</a>
+            <a class="dropdown-item" href="#">Large (16:9)</a>
+            <a class="dropdown-item" href="#">Medium (8:5)</a>
+            <a class="dropdown-item" href="#">Small (4:3)</a>
+            <a class="dropdown-item" href="#">Square (1:1)</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </form>
+          </div>
+        </div>
       </div>
       <div class="row"></div>
     </div>

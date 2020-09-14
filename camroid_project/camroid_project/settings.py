@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,7 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -167,24 +169,26 @@ MESSAGE_TAGS = {
 django_heroku.settings(locals())
 
 
-# # S3 BUCKETS CONFIG
-# AWS_ACCESS_KEY_ID = 'AKIATPFC6DI33VGJ6POP'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'camroiddb'
-# AWS_S3_FILE_OVERWRITE = False
-# AWS_DEFAULT_ACL = None
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# S3 BUCKETS CONFIG
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_FILE_OVERWRITE = config('AWS_S3_FILE_OVERWRITE')
+AWS_DEFAULT_ACL = config('AWS_DEFAULT_ACL')
+DEFAULT_FILE_STORAGE = config('DEFAULT_FILE_STORAGE')
+STATICFILES_STORAGE = config('STATICFILES_STORAGE')
+AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')  # change to your region
+# AWS_S3_SIGNATURE_VERSION = config('AWS_S3_SIGNATURE_VERSION')
 
-# '''
-# <?xml version="1.0" encoding="UTF-8"?>
-# <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-# <CORSRule>
-#     <AllowedOrigin>*</AllowedOrigin>
-#     <AllowedMethod>GET</AllowedMethod>
-#     <AllowedMethod>POST</AllowedMethod>
-#     <AllowedMethod>PUT</AllowedMethod>
-#     <AllowedHeader>*</AllowedHeader>
-# </CORSRule>
-# </CORSConfiguration>
-# '''
+'''
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+<CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedHeader>*</AllowedHeader>
+</CORSRule>
+</CORSConfiguration>
+'''

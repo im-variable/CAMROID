@@ -25,6 +25,8 @@ def check_email_exists(request):
     return JsonResponse(email_exists, safe=False)
 
 
+
+# for register page
 def check_username_notexists(request):
 
     username = request.GET.get("username")
@@ -38,9 +40,9 @@ def check_email_notexists(request):
 
     email_exists = False
     email = request.GET.get("email")
-    print(validate_email(email, verify=True))
-    if validate_email(email, verify=True):
-        email_exists = not User.objects.filter(
+    # print(validate_email(email, verify=True))
+    # if validate_email(email, verify=True):
+    email_exists = not User.objects.filter(
             email=email, is_active=True).exists()
 
     return JsonResponse(email_exists, safe=False)
@@ -110,8 +112,7 @@ def register(request):
 
                 activate_url = "http://"+domain+link
 
-                email_body = "Hi <b>" + user.username + \
-                    "</b>,<br>To complete your sign up, we just need to verify your email address. Click below link to activate your account <br>" + activate_url + "."
+                email_body = "Hi <b>" + user.username + "</b>,<br>To complete your sign up, we just need to verify your email address. Click below link to activate your account <br>" + activate_url + "."
                 email_subject = '[CAMROID] Please verify your email address for account activation'
 
                 email_message = EmailMessage(
