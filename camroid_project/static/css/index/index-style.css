@@ -795,6 +795,11 @@ h1, h2, h3, h4, h5,
       background: #ef6c57 !important;
       color: #fff; }
 */
+
+.main-content {
+  min-height: 600px;
+}
+
 ul.pagination li.page-item,
 ul.pagination li.page-item a span.material-icons {
   color: #ef6c57 !important;
@@ -802,7 +807,6 @@ ul.pagination li.page-item a span.material-icons {
   padding-right: 2px;
   font-weight: 600;
 }
-
 
 .align-items-stretch {
   padding: 1em;
@@ -823,7 +827,6 @@ img.img-fluid:hover {
   transform: scale(1.02);
 }
 
-
 .slider {
   width: 100%;
   display: flex;
@@ -839,7 +842,6 @@ img.img-fluid:hover {
 
   -webkit-overflow-scrolling: touch;
 }
-
 
 .slide {
   border-radius: 8px;
@@ -869,23 +871,19 @@ img.img-fluid:hover {
 }
 
 @media (max-width: 991.98px) {
-
   #id {
     margin-top: 0.3em;
     margin-bottom: 0.3em;
     border-radius: 0.3em;
     width: 100% !important;
   }
-
 }
 
 @media (min-width: 991.99px) {
-
   #id {
     width: 100% !important;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     border-radius: 0.5em;
   }
-
 }
