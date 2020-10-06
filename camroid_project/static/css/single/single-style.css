@@ -1,7 +1,17 @@
 .single-container {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .single-img-style {
-    width: 100%;
+  width: 100%;
 }
+
+div.dropdown-menu a.dropdown-item:hover {
+  background-color: #0ece91;
+}
+
+/* div.img-description {
+  border: 1px solid #dee2e6;
+  height: 100vh;
+  width: 100%;
+} */
