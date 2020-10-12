@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class CategoryList(models.Model):
     Category = models.CharField(max_length=200)
-    Cat_Img = models.ImageField(upload_to='media/cat_media')
+    Cat_Img = models.ImageField(upload_to='cat_media')
     Active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -36,7 +36,7 @@ class ImgDetails(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_img = models.ImageField(
-        upload_to='media/ProfileImg', default='media/ProfileImg/default-avatar.png')
+        upload_to='ProfileImg', default='media/ProfileImg/default-avatar.png')
     feedback = models.CharField(max_length=100, null=True)
 
     def __str__(self):

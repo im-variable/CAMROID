@@ -17,7 +17,7 @@ import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-
+print('dir:',BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -169,26 +169,26 @@ MESSAGE_TAGS = {
 django_heroku.settings(locals())
 
 
-# # S3 BUCKETS CONFIG
-# AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-# AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-# AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
-# AWS_S3_FILE_OVERWRITE = config('AWS_S3_FILE_OVERWRITE')
-# AWS_DEFAULT_ACL = config('AWS_DEFAULT_ACL')
-# DEFAULT_FILE_STORAGE = config('DEFAULT_FILE_STORAGE')
-# STATICFILES_STORAGE = config('STATICFILES_STORAGE')
-# AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')  # change to your region
-# # AWS_S3_SIGNATURE_VERSION = config('AWS_S3_SIGNATURE_VERSION')
+# S3 BUCKETS CONFIG
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_FILE_OVERWRITE = config('AWS_S3_FILE_OVERWRITE')
+AWS_DEFAULT_ACL = config('AWS_DEFAULT_ACL')
+DEFAULT_FILE_STORAGE = config('DEFAULT_FILE_STORAGE')
+STATICFILES_STORAGE = config('STATICFILES_STORAGE')
+AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')  # change to your region
+# AWS_S3_SIGNATURE_VERSION = config('AWS_S3_SIGNATURE_VERSION')
 
-# '''
-# <?xml version="1.0" encoding="UTF-8"?>
-# <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-# <CORSRule>
-#     <AllowedOrigin>*</AllowedOrigin>
-#     <AllowedMethod>GET</AllowedMethod>
-#     <AllowedMethod>POST</AllowedMethod>
-#     <AllowedMethod>PUT</AllowedMethod>
-#     <AllowedHeader>*</AllowedHeader>
-# </CORSRule>
-# </CORSConfiguration>
-# '''
+'''
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+<CORSRule>
+    <AllowedOrigin>*</AllowedOrigin>
+    <AllowedMethod>GET</AllowedMethod>
+    <AllowedMethod>POST</AllowedMethod>
+    <AllowedMethod>PUT</AllowedMethod>
+    <AllowedHeader>*</AllowedHeader>
+</CORSRule>
+</CORSConfiguration>
+'''

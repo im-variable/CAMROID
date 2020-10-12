@@ -13,11 +13,11 @@ from django.contrib.auth.decorators import login_required
 import calendar
 import re
 from django.views import View
-
 # Create your views here.
 
-UPLOAD_FOLDER = os.path.abspath(os.path.dirname(__name__))
+# UPLOAD_FOLDER = os.path.abspath(os.path.dirname(__name__))
 
+UPLOAD_FOLDER= Path(__file__).resolve(strict=True).parent.parent
 # for carousel in index page
 
 
@@ -30,7 +30,7 @@ def cat_suggestions():
     #     cat_suggestions.append(category_[i:i+6])
     #     i+=6
 
-    print('suggestion', cat_suggestions)
+    # print('suggestion', cat_suggestions)
     return cat_suggestions
 
 # # for random string generator for file name
@@ -83,7 +83,7 @@ def index(request):
 
         searchVal = str(request.POST['search-field'])
 
-        print("searchVal: ", searchVal)
+        # print("searchVal: ", searchVal)
         arrSearch = re.findall(r"[\w']+", searchVal)
 
         imgList = None
@@ -117,7 +117,7 @@ ALLOWED_EXTENTIONS = ['png', 'jpg', 'jpeg']
 def myspace(request):
     # for categoryList in dd
     Upload_catList = categoryList()
-
+    print('dir',UPLOAD_FOLDER)
     user = User.objects.get(id=request.user.id)
 
     if request.method == "POST":
@@ -161,7 +161,7 @@ def myspace(request):
 
                 profile_img = request.FILES['profile-upload']
 
-                print('profile image:', user.userprofile.profile_img.name)
+                # print('profile image:', user.userprofile.profile_img.name)
                 if profile_img.name.endswith(tuple(ALLOWED_EXTENTIONS)):
                     if user.userprofile.profile_img is not None and user.userprofile.profile_img.name != 'ProfileImg/default-avatar.png':
                         try:
@@ -230,8 +230,8 @@ def myspace(request):
         pro_queryset.append({'id': result.id, 'Img': result.Img.url,
                              'UploadDate': calendar.month_name[result.month] + "-" + str(result.year)})
 
-    for x in pro_queryset:
-        print("x", x)
+    # for x in pro_queryset:
+    #     print("x", x)
 
     collect_queryset = ImgDetails.objects.filter(User_id=user.id, Valid=True).annotate(month=ExtractMonth('UploadDate'),
                                                                                        year=ExtractYear('UploadDate'))
